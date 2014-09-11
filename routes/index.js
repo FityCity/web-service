@@ -14,6 +14,11 @@ router.get('/db', function (request, response) {
   });
 })
 
+/* Test GCM */
+router.get('/gcm', function(req, res){
+   res.render('gcm', {callback: 'callback goes here'});
+});
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
