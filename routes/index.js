@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
+var request = require('request');
 
 router.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -16,7 +17,22 @@ router.get('/db', function (request, response) {
 
 /* Test GCM */
 router.get('/gcm', function(req, res){
-   res.render('gcm', {callback: 'callback goes here'});
+   request.post({ 
+	  url: 'https://android.googleapis.com/gcm/send', 
+	  headers:{
+		 'Authorization':'key='+process.env.GCM_SERVER_KEY,
+	  },
+	  json:{
+		 "registration_ids" : [process.env.GCM_ERIC_PHONE_KEY],
+		 "data":{
+			"message":"GCM Works!!! - Eric"
+		 }
+	  }}, function (error, response, body) {
+			if(response.statusCode == 201){
+			  res.render('gcm', {callback: JSON.stringify(body)}); } else {
+			  res.render('gcm', {callback: JSON.stringify(body)});
+	        }
+	  });
 });
 
 /* GET home page. */
