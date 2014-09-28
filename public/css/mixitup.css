@@ -1,0 +1,39 @@
+.mixitup-container{
+  padding: 2% 2% 0;
+  text-align: justify;
+  font-size: 0.1px;
+  -webkit-backface-visibility: hidden;
+}
+
+.mixitup-container:after{
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+.mixitup-container .mix,
+.mixitup-container .gap{
+  display: inline-block;
+}
+
+.mixitup-container .mix{
+  text-align: left;
+  margin-bottom: 15px;
+  display: none;
+}
+
+
+
+.mixitup-container .mix:after{
+  color: white;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 4% 6%;
+  font-weight: 700;
+}
+
+.mixitup-container .mix:before{
+  display: inline-block;
+  padding-top: 60%;
+}
