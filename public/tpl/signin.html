@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    html {
+        font-size: 10px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%
+    }
+
+    body{
+        position: static;
+        min-height: 100%;
+        text-rendering: optimizeLegibility !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #626262;
+        margin: 0;
+        box-sizing: border-box;
+        background: url(img/bg-pattern/bg-pattern7.png) repeat #fff;
+    }
+
+    .signin-page > .signin-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        position: static;
+    }
+
+    .signin-content {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        background: url(img/background/login-background.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+
+    }
+
+    .signin-page .signin-content {
+        overflow: hidden;
+        min-height: 100%;
+    }
+
+    .signin-page .signin-header{
+        margin-top: 150px;
+    }
+
+    .signin-page .logo{
+        font-size: 26px;
+        font-weight: 400;
+        text-align: center
+    }
+    .signin-page h1{
+        font-weight: 300;
+        color: #fafafa;
+        font-size: 54px;
+        margin-bottom: 60px;
+        margin-top: 20px;
+        font-family: inherit;
+        line-height: 1.1;
+        margin: .50em 0;
+    }
+    .signin-page h1 a{
+        color: #fafafa;
+        text-decoration: none;
+        background: 0 0;
+    }
+    .signin-page .signin-body{
+        padding: 20px 10px;
+    }
+
+    @media (min-width: 320px){
+        .signin-body-container {
+            width: 300px;
+        }
+    }
+    @media (min-width: 768px){
+        .signin-body-container {
+            width: 750px;
+        }
+    }
+    @media (min-width: 992px){
+        .signin-body-container {
+            width: 970px;
+        }
+    }
+    @media (min-width: 1200px){
+        .signin-body-container {
+            width: 1170px;
+        }
+    }
+
+    .signin-page .signin-body-container {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .signin-page .form-container{
+        max-width: 420px;
+        margin: 10px auto;
+    }
+
+    .form-container fieldset {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        min-width: 0;
+    }
+    .signin-page .form-group{
+        margin: 0;
+    }
+    .signin-page .input-group{
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
+        position: relative;
+        display: table;
+        border-collapse: separate;
+    }
+    .signin-page .input-group-first{
+        border-top: 1px solid rgba(255, 255, 255, .3);
+
+    }
+    .signin-page .input-group-addon{
+        background: 0 0;
+        border: 0;
+        font-size: 24px;
+        color: #ccc;
+    }
+    .signin-page .input-group-addon {
+        padding: 6px 12px;
+        font-weight: 400;
+        line-height: 1;
+        text-align: center;
+        border-radius: 2px;
+        width: 1%;
+        white-space: nowrap;
+        vertical-align: middle;
+        display: table-cell;
+    }
+    .signin-page .input-group-addon:first-child {
+        border-right: 0;
+    }
+
+
+    .signin-page .form-control{
+        border: 0;
+        border-radius: 0;
+        color: #fafafa;
+        font-weight: 300;
+        background: 0 0;
+        position: relative;
+        z-index: 2;
+        float: left;
+        width: 100%;
+        margin-bottom: 0;
+        box-shadow: none;
+        display: table-cell;
+        -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+
+    .signin-page .form-control:focus {
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075), 0 0 0px rgba(102, 175, 233, .6);
+        box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075), 0 0 0px rgba(102, 175, 233, .6)
+    }
+    .signin-page input{
+        margin: 0;
+        font-family: inherit;
+
+    }
+    input::-webkit-input-placeholder {
+        color: #a1a1a1 !important;
+    }
+    input:-moz-placeholder{
+        color:#a1a1a1!important;
+    }
+    input::-moz-placeholder{
+        color:#a1a1a1!important;
+    }
+    input:-ms-input-placeholder {
+        color:#a1a1a1!important;
+    }
+    .signin-page .input-group .form-control{
+
+    }
+    .signin-page .input-group .form-control:last-child{
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .signin-page .input-lg {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33;
+    }
+    .signin-page .divider-lg {
+        height: 30px;
+    }
+    .signin-page .divider {
+        display: block;
+        height: 10px;
+    }
+    .signin-page a{
+        text-decoration: none;
+
+    }
+    /*login button*/
+    .btn-login{
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        padding: 10px 0px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 3px;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        background-image: none;
+        white-space: nowrap;
+        color: #fff;
+        background-color: #5b90bf;
+        border-color: #4984b8
+    -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+
+    }
+    .btn-login.active, .btn-login:active, .btn-login:focus, .btn-login:hover{
+        color: #fff;
+        background-color: #4177a6;
+        border-color: #37648c;
+        text-decoration: none;
+        outline: 0;
+    }
+
+    .btn-login.active:focus, .btn-login:active:focus, .btn-login:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px
+    }
+
+    .btn-login:focus, .btn-login:hover {
+        color: #b2b2b2;
+        text-decoration: none
+    }
+
+    .btn-login.active, .btn-login:active {
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+    }
+</style>
+<div class="signin-page">
+<div class="signin-container">
+    <!-- ngInclude: 'views/nav.html' -->
+
+
+
+    <div id="content" class="signin-content">
+        <!-- ngView:  -->
+        <section style="display: block">
+            <div class="page-signin">
+
+                <div class="signin-header">
+                    <section class="logo text-center">
+                        <h1><a href="#/" class="ng-binding">Fit eCity</a></h1>
+                    </section>
+                </div>
+
+                <div class="signin-body">
+                    <div class="signin-body-container">
+                        <div class="form-container">
+
+                            <form class="form-horizontal ng-pristine ng-valid">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-first">
+                                <span class="input-group-addon">
+                                    <i class="icon ion-ios7-person-outline"></i>
+                                </span>
+                                            <input type="email" class="form-control input-lg" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon ion-ios7-locked-outline"></i>
+                                </span>
+                                            <input type="password" class="form-control input-lg" placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="divider divider-lg"></div>
+                                    <div class="form-group">
+                                        <a ui-sref="app.dashboard" class="btn btn-login">Log in</a>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</div>
