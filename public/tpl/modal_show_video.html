@@ -1,9 +1,10 @@
 
 <div class="modal-header">
-    <h3 class="modal-title">{{activity.url}}</h3>
+    <h3 class="modal-title">{{activity.title}}</h3>
 </div>
 <div class="modal-body">
-    <p align="center"><iframe width="560" height="315" src="http://www.youtube.com/embed/p64YlMRIDVM" frameborder="0" allowfullscreen></iframe></p>
+    {{videoSrc}}
+    <p align="center"><iframe width="560" height="315" src={{videoSrc}} frameborder="0" allowfullscreen></iframe></p>
     <!-- <p><img class="img-responsive" src="assets/img/portfolio/folio01.jpg" alt=""></p>-->
     <p>Jumping Jacks are a great addition to any at home cardio workout.</p>
 </div>

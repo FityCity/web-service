@@ -76,10 +76,11 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $scope.activities=activities;
         $('#Container').mixItUp();
         $scope.openDetail=function(activity,size){
-            $scope.activity=activity
+            $scope.activity=activity;
+
             var ModalVideoCtrl = function ($scope, $modalInstance,activity) {
-                console.log(activity)
                 $scope.activity=activity;
+                $scope.videoSrc="http://www.youtube.com/embed/"+activity.uri;
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
@@ -91,6 +92,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                 resolve: {
                     activity: function () {
                         return $scope.activity;
+                    },
+                    videoSrc:function(){
+                        return $scope.videoSrc;
                     }
                 }
             });
