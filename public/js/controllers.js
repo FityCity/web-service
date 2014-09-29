@@ -71,10 +71,10 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $scope.title="Activities";
         var activities=ActivityService.all();
         for(var i=0;i<activities.length;i++){
-            activities[i].imgSrc= $.jYoutube(activities[i].url,"full")
+            activities[i].imgSrc= $.jYoutube("//www.youtube.com/watch?v="+activities[i].uri,"full")
         }
         $scope.activities=activities;
-
+        $('#Container').mixItUp();
         $scope.openDetail=function(activity,size){
             $scope.activity=activity
             var ModalVideoCtrl = function ($scope, $modalInstance,activity) {
