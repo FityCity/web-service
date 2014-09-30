@@ -8,34 +8,34 @@ angular.module('app.services', [])
     .factory('ActivityService',function(){
         var activities=[{
             "title":"Jumping Jack",
-            "uri":"p64YlMRIDVM",
+            "url":"https://www.youtube.com/watch?v=p64YlMRIDVM",
             "imgSrc":"",
             "instructions":"How to do jumping jack?",
             "filter":"easy"
         },{
             "title":"Push Up",
-            "uri":"naRaVsFn_g4",
+            "url":"https://www.youtube.com/watch?v=naRaVsFn_g4",
             "imgSrc":"",
             "instructions":"How to do push ups?",
             "filter":"normal"
         },{
             "title":"Jumping Jack",
-            "uri":"p64YlMRIDVM",
+            "url":"https://www.youtube.com/watch?v=p64YlMRIDVM",
             "imgSrc":"",
             "instructions":"How to do jumping jack?",
-            "filter":"normal"
-        },{
-            "title":"Push Up",
-            "uri":"naRaVsFn_g4",
-            "imgSrc":"",
-            "instructions":"How to do push ups?",
-            "filter":"normal"
+            "filter":"easy"
         },{
             "title":"Jumping Jack",
-            "uri":"p64YlMRIDVM",
+            "url":"https://www.youtube.com/watch?v=p64YlMRIDVM",
             "imgSrc":"",
             "instructions":"How to do jumping jack?",
-            "filter":"normal"
+            "filter":"easy"
+        },{
+            "title":"Jumping Jack",
+            "url":"https://www.youtube.com/watch?v=p64YlMRIDVM",
+            "imgSrc":"",
+            "instructions":"How to do jumping jack?",
+            "filter":"easy"
         }
         ]
 

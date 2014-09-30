@@ -71,16 +71,15 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $scope.title="Activities";
         var activities=ActivityService.all();
         for(var i=0;i<activities.length;i++){
-            activities[i].imgSrc= $.jYoutube("//www.youtube.com/watch?v="+activities[i].uri,"full")
+            activities[i].imgSrc= $.jYoutube(activities[i].url,"full")
         }
         $scope.activities=activities;
-        $('#Container').mixItUp();
-        $scope.openDetail=function(activity,size){
-            $scope.activity=activity;
 
+        $scope.openDetail=function(activity,size){
+            $scope.activity=activity
             var ModalVideoCtrl = function ($scope, $modalInstance,activity) {
+                console.log(activity)
                 $scope.activity=activity;
-                $scope.videoSrc="http://www.youtube.com/embed/"+activity.uri;
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
@@ -92,9 +91,6 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                 resolve: {
                     activity: function () {
                         return $scope.activity;
-                    },
-                    videoSrc:function(){
-                        return $scope.videoSrc;
                     }
                 }
             });

@@ -1,6 +1,6 @@
 <script>
     $(function(){
-
+        $('#Container').mixItUp();
     });
 </script>
 <div ng-controller="ActivityCtrl">
@@ -21,7 +21,7 @@
                 <button type="button" class="btn btn-default filter" data-filter="all">All</button>
                 <button type="button" class="btn btn-default filter" data-filter=".easy">Easy</button>
                 <button type="button" class="btn btn-default filter" data-filter=".normal">Normal</button>
-                <button type="button" class="btn btn-default filter" data-filter=".hard">Hard</button>
+                <button type="button" class="btn btn-default filter" data-filter=".challenge">Challenge</button>
             </div>
         </div>
     </div>
@@ -42,8 +42,8 @@
                         <h4 class="clearfix">
                             <a   title="">{{activity.title}}</a>
                         </h4>
-                        <p>{{activity.instructions}}</p>
-                        <a ng-click="openDetail(activity)" class="btn btn-success thumb-more"><span class="button-content">View</span></a>
+                        <p>Lorem ipsum dolor sic amet dixit tu</p>
+                        <a ng-click="openDetail(activity)" class="btn btn-success thumb-more"><span class="button-content">View details</span></a>
                     </div>
                 </div>
 
