@@ -12,7 +12,7 @@
 </div>
 <div class="wrapper-md">
     <div class="row">
-        <div class="col-lg-12 controls" style="text-align: right" ng-controller="ModalDemoCtrl">
+        <div class="col-lg-12 controls" ng-controller="ModalDemoCtrl">
             <script type="text/ng-template" id="myModalContent.html">
                 <div ng-include="'tpl/modal_add_activity.html'"></div>
             </script>
@@ -52,7 +52,7 @@
                 <a href class="col padder-s text-muted b-r ">
                     <i class="icon ion-compose block  fa-2x"></i>
                 </a>
-                <a href class="col padder-s text-muted  ">
+                <a href class="col padder-s text-muted  " ng-click="delete(activity)">
                     <i class="icon ion-trash-b block  fa-2x"></i>
                 </a>
             </div>

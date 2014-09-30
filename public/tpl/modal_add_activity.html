@@ -2,14 +2,23 @@
     <h3 class="modal-title">Add an activity</h3>
 </div>
 <div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+  <form role="form">
+    <div class="form-group">
+      <label>Title</label>
+      <input ng-model='newActivity.title' type="text" class="form-control" placeholder="Activity Title">
+    </div>
+    <div class="form-group">
+      <label>Youtube ID</label>
+      <input ng-model='newActivity.youtube_id' type="text" class="form-control" placeholder="Youtube ID">
+    </div>
+    <div class="form-group">
+      <label>Instructions</label>
+      <input ng-model='newActivity.instructions' type="text" class="form-control" placeholder="Instructions">
+    </div>
+
+  </form>
 </div>
-<div class="modal-footer">                  
+<div class="modal-footer" style="text-align:left;">                  
     <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-primary" ng-click="post(modalInstance)">Add</button>
 </div>
