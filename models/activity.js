@@ -2,10 +2,11 @@
 var mongoose = require('mongoose');
 
 // Define our beer schema
-var ActivitySchema   = new mongoose.Schema({
-  name: String,
-  video_url: String,
-  instruction: String
+var ActivitySchema = new mongoose.Schema({
+  title: String,
+  youtube_id: String,
+  instructions: String,
+  filter:String
 });
 
 // Export the Mongoose model

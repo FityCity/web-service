@@ -8,12 +8,12 @@
                 <p class="text-muted">Please fill the information to add a Modality.</p>
                 <div class="form-group">
                     <label>Modality name<em class="text-muted"> (allow 'a-zA-Z0-9', 4-30 length)</em></label>
-                    <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,30}$/" required >
+                    <input type="text" class="form-control" ng-model='newActivity.title' ng-pattern="/^[a-zA-Z0-9]{4,30}$/" required >
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Modality ID</label>
                     <input type="email" class="form-control" ng-model="user.email" required >
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>Difficulty</label>
                     <select class="form-control m-t" ng-model="f.b" required >
@@ -116,18 +116,18 @@
                             <a class="btn btn-default" data-edit="redo" tooltip="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
                         </div>
                     </div>
-                    <div ui-jq="wysiwyg" class="form-control" style="overflow:scroll;height:200px;max-height:200px">
+                    <div ui-jq="wysiwyg" ng-model='newActivity.instructions' class="form-control" style="overflow:scroll;height:200px;max-height:200px">
                         Add description&hellip;
                     </div>
                 </div>
                 <div class="form-group">
                   <label>YouTube URL</label>
-                  <input type="url" class="form-control" placeholder="http://" ng-model="contact.url" required>
+                  <input type="url" class="form-control" placeholder="http://" ng-model='newActivity.youtube_id' required>
                 </div>
             </div>
             <footer class="panel-footer text-right bg-light lter">
                 <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-                <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Save</button>
+                <button type="submit" ng-click="post(modalInstance)" class="btn btn-success" ng-disabled="form.$invalid">Save</button>
             </footer>
         </div>
     </form>

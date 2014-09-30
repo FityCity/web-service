@@ -67,19 +67,25 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
       }
 
   }])
-    .controller('ActivityCtrl',function ($scope,$modal,ActivityService) {
+    .controller('ActivityCtrl',function ($scope,$modal, ActivityService) {
         $scope.title="Activities";
-        var activities=ActivityService.all();
-        for(var i=0;i<activities.length;i++){
-            activities[i].imgSrc= $.jYoutube(activities[i].url,"full")
+        // for(var i=0;i<activities.length;i++){
+        //     activities[i].imgSrc= $.jYoutube("//www.youtube.com/watch?v="+activities[i].youtube_id,"full")
+        // }
+        $scope.activities=ActivityService.all();
+        $('#Container').mixItUp();
+
+        $scope.delete = function(activity){
+          ActivityService.delete(activity);
+          $scope.activities = ActivityService.all();
         }
-        $scope.activities=activities;
 
         $scope.openDetail=function(activity,size){
-            $scope.activity=activity
-            var ModalVideoCtrl = function ($scope, $modalInstance,activity) {
-                console.log(activity)
+            $scope.activity=activity;
+
+            var ModalVideoCtrl = function ($scope, $modalInstance, $sce, activity) {
                 $scope.activity=activity;
+                $scope.videoSrc=$sce.trustAsResourceUrl("http://www.youtube.com/embed/"+activity.youtube_id);
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
@@ -199,15 +205,32 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $modalInstance.dismiss('cancel');
       };
     };
-    var ModalActivityCtrl = function ($scope, $modalInstance, items) {
-            $scope.ok = function () {
-                $modalInstance.close($scope.selected.item);
-            };
+    var ModalActivityCtrl = function ($scope, $modalInstance, ActivityService, items) {
+      $scope.modalInstance = $modalInstance;
 
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
-        };
+      var activityTemplate = {
+        title:"",
+        youtube_id:"",
+        instructions:""
+      };
+      $scope.newActivity = angular.copy(activityTemplate);
+
+      $scope.post = function(modalInstance){
+        console.log("Posting activity");
+        ActivityService.post($scope.newActivity);
+        modalInstance.close();
+        $scope.newActivity = angular.copy(activityTemplate);
+      };
+
+      $scope.ok = function () {
+          $modalInstance.close($scope.selected.item);
+      };
+
+      $scope.cancel = function () {
+          $modalInstance.dismiss('cancel');
+      };
+    };
+
     $scope.open = function (size) {
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',

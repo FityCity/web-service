@@ -18,10 +18,7 @@ var offers = require('./routes/offers');
 
 var app = express();
 
-// Connect to the beerlocker MongoDB
-mongoose.connect('mongodb://localhost:27017/fitecity');
-
-// This is a test
+mongoose.connect(process.env.MONGOHQ_URL)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
