@@ -7,7 +7,8 @@ var activitiesRoute = router.route('/');
 
 
 /*  GET: activities  */
-activitiesRoute.get(authCtrl.isAuthenticated, function(req, res) {
+// activitiesRoute.get(authCtrl.isAuthenticated, function(req, res) {
+activitiesRoute.get(function(req, res) {
 
   Activity.find(function(err, activities) {
     if (err){
@@ -19,7 +20,7 @@ activitiesRoute.get(authCtrl.isAuthenticated, function(req, res) {
 
 
  /*  POST: activities  */
-activitiesRoute.post(authCtrl.isAuthenticated, function(req, res) {
+activitiesRoute.post(function(req, res) {
 
   // Create a new instance of the activity model
   var activity = new Activity();
@@ -40,7 +41,7 @@ activitiesRoute.post(authCtrl.isAuthenticated, function(req, res) {
 });
 
 // Create endpoint /api/beers/:beer_id for DELETE
-activitiesRoute.delete(authCtrl.isAuthenticated, function(req, res) {
+activitiesRoute.delete(function(req, res) {
   // Use the Beer model to find a specific beer and remove it
   // console.log(req);
   Activity.findByIdAndRemove(req.query.activity_id, function(err) {

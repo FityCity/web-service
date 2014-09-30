@@ -36,7 +36,6 @@ vendorsRoute.post(function(req, res) {
   });
 });
 
-// -----------------------------------------------------------------------------
 
 /*  GET: vendor  */
 vendorRoute.get(function(req, res) {
