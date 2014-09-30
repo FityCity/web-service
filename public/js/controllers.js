@@ -73,7 +73,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         //     activities[i].imgSrc= $.jYoutube("//www.youtube.com/watch?v="+activities[i].youtube_id,"full")
         // }
         $scope.activities=ActivityService.all();
-        $('#Container').mixItUp();
+        // $('#Container').mixItUp();
 
         $scope.delete = function(activity){
           ActivityService.delete(activity);

@@ -6,7 +6,7 @@ var ActivitySchema = new mongoose.Schema({
   title: String,
   youtube_id: String,
   instructions: String,
-  filter:String
+  difficulty:String
 });
 
 // Export the Mongoose model

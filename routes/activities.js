@@ -28,7 +28,7 @@ activitiesRoute.post(authCtrl.isAuthenticated, function(req, res) {
   activity.title = req.body.title;
   activity.youtube_id = req.body.youtube_id;
   activity.instructions = req.body.instructions;
-  activity.filter = req.body.filter;
+  activity.difficulty = req.body.difficulty;
 
   // Save the activity and check for errors
   activity.save(function(err) {
