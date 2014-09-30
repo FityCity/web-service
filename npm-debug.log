@@ -1,0 +1,163 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'rerun', 'rb-fsevent' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'rerun', null ]
+6 verbose cache add name=undefined spec="rerun" args=["rerun",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'rerun',
+7 verbose parsed url   path: 'rerun',
+7 verbose parsed url   href: 'rerun' }
+8 verbose cache add [ 'rb-fsevent', null ]
+9 verbose cache add name=undefined spec="rb-fsevent" args=["rb-fsevent",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'rb-fsevent',
+10 verbose parsed url   path: 'rb-fsevent',
+10 verbose parsed url   href: 'rb-fsevent' }
+11 silly lockFile c0b88eec-rerun rerun
+12 verbose lock rerun /Users/ericadlam/.npm/c0b88eec-rerun.lock
+13 silly lockFile e7ea99f3-rb-fsevent rb-fsevent
+14 verbose lock rb-fsevent /Users/ericadlam/.npm/e7ea99f3-rb-fsevent.lock
+15 silly lockFile c0b88eec-rerun rerun
+16 silly lockFile c0b88eec-rerun rerun
+17 silly lockFile e7ea99f3-rb-fsevent rb-fsevent
+18 silly lockFile e7ea99f3-rb-fsevent rb-fsevent
+19 verbose addNamed [ 'rerun', '' ]
+20 verbose addNamed [ null, '*' ]
+21 silly lockFile 11f30ddb-rerun rerun@
+22 verbose lock rerun@ /Users/ericadlam/.npm/11f30ddb-rerun.lock
+23 verbose addNamed [ 'rb-fsevent', '' ]
+24 verbose addNamed [ null, '*' ]
+25 silly lockFile 8440a81c-rb-fsevent rb-fsevent@
+26 verbose lock rb-fsevent@ /Users/ericadlam/.npm/8440a81c-rb-fsevent.lock
+27 silly addNameRange { name: 'rerun', range: '*', hasData: false }
+28 verbose request where is /rerun
+29 verbose request registry https://registry.npmjs.org/
+30 verbose request id 493512f91c5e9d66
+31 verbose url raw /rerun
+32 verbose url resolving [ 'https://registry.npmjs.org/', './rerun' ]
+33 verbose url resolved https://registry.npmjs.org/rerun
+34 verbose request where is https://registry.npmjs.org/rerun
+35 info trying registry request attempt 1 at 19:54:36
+36 http GET https://registry.npmjs.org/rerun
+37 silly addNameRange { name: 'rb-fsevent', range: '*', hasData: false }
+38 verbose request where is /rb-fsevent
+39 verbose request registry https://registry.npmjs.org/
+40 verbose url raw /rb-fsevent
+41 verbose url resolving [ 'https://registry.npmjs.org/', './rb-fsevent' ]
+42 verbose url resolved https://registry.npmjs.org/rb-fsevent
+43 verbose request where is https://registry.npmjs.org/rb-fsevent
+44 info trying registry request attempt 1 at 19:54:36
+45 http GET https://registry.npmjs.org/rb-fsevent
+46 http 404 https://registry.npmjs.org/rb-fsevent
+47 verbose headers { date: 'Tue, 30 Sep 2014 10:24:33 GMT',
+47 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+47 verbose headers   'content-type': 'application/json',
+47 verbose headers   'cache-control': 'max-age=0',
+47 verbose headers   'content-length': '52',
+47 verbose headers   'accept-ranges': 'bytes',
+47 verbose headers   via: '1.1 varnish',
+47 verbose headers   age: '0',
+47 verbose headers   'x-served-by': 'cache-syd1622-SYD',
+47 verbose headers   'x-cache': 'MISS',
+47 verbose headers   'x-cache-hits': '0',
+47 verbose headers   'x-timer': 'S1412072673.457989,VS0,VE241',
+47 verbose headers   'keep-alive': 'timeout=10, max=50',
+47 verbose headers   connection: 'Keep-Alive' }
+48 silly registry.get cb [ 404,
+48 silly registry.get   { date: 'Tue, 30 Sep 2014 10:24:33 GMT',
+48 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+48 silly registry.get     'content-type': 'application/json',
+48 silly registry.get     'cache-control': 'max-age=0',
+48 silly registry.get     'content-length': '52',
+48 silly registry.get     'accept-ranges': 'bytes',
+48 silly registry.get     via: '1.1 varnish',
+48 silly registry.get     age: '0',
+48 silly registry.get     'x-served-by': 'cache-syd1622-SYD',
+48 silly registry.get     'x-cache': 'MISS',
+48 silly registry.get     'x-cache-hits': '0',
+48 silly registry.get     'x-timer': 'S1412072673.457989,VS0,VE241',
+48 silly registry.get     'keep-alive': 'timeout=10, max=50',
+48 silly registry.get     connection: 'Keep-Alive' } ]
+49 silly lockFile 8440a81c-rb-fsevent rb-fsevent@
+50 silly lockFile 8440a81c-rb-fsevent rb-fsevent@
+51 http 200 https://registry.npmjs.org/rerun
+52 silly registry.get cb [ 200,
+52 silly registry.get   { date: 'Tue, 30 Sep 2014 10:24:34 GMT',
+52 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+52 silly registry.get     etag: '"A7UMTNN1KLGK8MLIYNQ5D1DLX"',
+52 silly registry.get     'content-type': 'application/json',
+52 silly registry.get     'cache-control': 'max-age=60',
+52 silly registry.get     'content-length': '12223',
+52 silly registry.get     'accept-ranges': 'bytes',
+52 silly registry.get     via: '1.1 varnish',
+52 silly registry.get     age: '0',
+52 silly registry.get     'x-served-by': 'cache-syd1621-SYD',
+52 silly registry.get     'x-cache': 'MISS',
+52 silly registry.get     'x-cache-hits': '0',
+52 silly registry.get     'x-timer': 'S1412072673.570388,VS0,VE482',
+52 silly registry.get     vary: 'Accept',
+52 silly registry.get     'keep-alive': 'timeout=10, max=50',
+52 silly registry.get     connection: 'Keep-Alive' } ]
+53 silly addNameRange number 2 { name: 'rerun', range: '*', hasData: true }
+54 silly addNameRange versions [ 'rerun',
+54 silly addNameRange   [ '0.0.2',
+54 silly addNameRange     '0.0.3',
+54 silly addNameRange     '0.9.1',
+54 silly addNameRange     '0.9.2',
+54 silly addNameRange     '1.0.0',
+54 silly addNameRange     '1.0.1',
+54 silly addNameRange     '1.1.0',
+54 silly addNameRange     '1.1.1',
+54 silly addNameRange     '1.1.2',
+54 silly addNameRange     '1.1.3' ] ]
+55 verbose addNamed [ 'rerun', '1.1.3' ]
+56 verbose addNamed [ '1.1.3', '1.1.3' ]
+57 silly lockFile 0c92ce13-rerun-1-1-3 rerun@1.1.3
+58 verbose lock rerun@1.1.3 /Users/ericadlam/.npm/0c92ce13-rerun-1-1-3.lock
+59 silly lockFile d03b09d8--npmjs-org-rerun-rerun-1-1-3-tgz https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz
+60 verbose lock https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz /Users/ericadlam/.npm/d03b09d8--npmjs-org-rerun-rerun-1-1-3-tgz.lock
+61 verbose addRemoteTarball [ 'https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz',
+61 verbose addRemoteTarball   '0eb34a53fb2fcc95384454e781cb64602e666743' ]
+62 info retry fetch attempt 1 at 19:54:38
+63 verbose fetch to= /var/folders/bc/yc9vrdrd1nzgf8_s8z928_800000gn/T/npm-14980-CdCRMuBq/registry.npmjs.org/rerun/-/rerun-1.1.3.tgz
+64 http GET https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz
+65 http 200 https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz
+66 silly lockFile d03b09d8--npmjs-org-rerun-rerun-1-1-3-tgz https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz
+67 silly lockFile d03b09d8--npmjs-org-rerun-rerun-1-1-3-tgz https://registry.npmjs.org/rerun/-/rerun-1.1.3.tgz
+68 silly lockFile 0c92ce13-rerun-1-1-3 rerun@1.1.3
+69 silly lockFile 0c92ce13-rerun-1-1-3 rerun@1.1.3
+70 silly lockFile 11f30ddb-rerun rerun@
+71 silly lockFile 11f30ddb-rerun rerun@
+72 error 404 404 Not Found: rb-fsevent
+72 error 404
+72 error 404 'rb-fsevent' is not in the npm registry.
+72 error 404 You should bug the author to publish it
+72 error 404 It was specified as a dependency of 'edu.unisa.fiteadmin'
+72 error 404
+72 error 404 Note that you can also install from a
+72 error 404 tarball, folder, or http url, or git url.
+73 error System Darwin 13.4.0
+74 error command "node" "/usr/local/bin/npm" "install" "rerun" "rb-fsevent"
+75 error cwd /Users/ericadlam/Projects/edu/unisa/edu.unisa.admin
+76 error node -v v0.10.32
+77 error npm -v 1.4.28
+78 error code E404
+79 verbose exit [ 1, true ]

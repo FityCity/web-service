@@ -1,0 +1,155 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add an activity</h3>
+</div>
+<div class="modal-body">
+    <form name="form" class="form-validation">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="text-muted">Please fill the information to add a Modality.</p>
+                <div class="form-group">
+                    <label>Modality name<em class="text-muted"> (allow 'a-zA-Z0-9', 4-30 length)</em></label>
+                    <input type="text" class="form-control" ng-model='newActivity.title' ng-pattern="/^[a-zA-Z0-9/\s/g]{4,30}$/" required >
+                </div>
+                <!-- <div class="form-group">
+                    <label>Modality ID</label>
+                    <input type="email" class="form-control" ng-model="user.email" required >
+                </div> -->
+                <div class="form-group">
+                  <label>YouTube Video ID</label>
+                  <input type="text" ng-pattern="/^[a-zA-Z0-9]{4,30}$/" class="form-control" placeholder="video id" ng-model='newActivity.youtube_id' required>
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select class="form-control m-t" ng-model="newActivity.difficulty" required >
+                        <option value="">Please choose</option>
+                        <option value="easy">Easy -- 2 points</option>
+                        <option value="medium">Medium -- 5 points</option>
+                        <option value="hard">Hard -- 10 points</option>
+                    </select>
+                </div>
+                <!--
+                <div class="form-group pull-in clearfix">
+                    <div class="col-sm-6">
+                        <label>Enter password</label>
+                        <input type="password" class="form-control" name="password" ng-model="password" required >   
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Confirm password</label>
+                        <input type="password" class="form-control" name="confirm_password" required ng-model="confirm_password" ui-validate=" '$value==password' " ui-validate-watch=" 'password' ">
+                        <span ng-show='form.confirm_password.$error.validator'>Passwords do not match!</span>
+                    </div>
+                </div>
+                -->
+                <!-- <div class="form-group">
+                    <label>Date</label>
+                    <div ng-controller="DatepickerDemoCtrl">
+                        <div class="input-group w-md">
+                            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
+                <!--
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" placeholder="(XXX) XXXX XXX" ng-model="phone" ng-pattern="/\([0-9]{3}\) ([0-9]{3}) ([0-9]{3})$/" required >
+                </div>
+                <div class="checkbox">
+                    <label class="i-checks">
+                        <input type="checkbox" ng-model="agree" required><i></i> I agree to the <a href class="text-info">Terms of Service</a>
+                    </label>
+                </div>
+                -->
+                <!-- <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#editor">
+                        <div class="btn-group dropdown">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" tooltip="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href dropdown-toggle data-edit="fontName Serif" style="font-family:'Serif'">Serif</a></li> 
+                                <li><a href dropdown-toggle data-edit="fontName Sans" style="font-family:'Sans'">Sans</a></li>
+                                <li><a href dropdown-toggle data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li></ul>
+                        </div>
+                        <div class="btn-group dropdown">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" tooltip="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href dropdown-toggle data-edit="fontSize 5" style="font-size:24px">Huge</a></li>
+                                <li><a href dropdown-toggle data-edit="fontSize 3" style="font-size:18px">Normal</a></li>
+                                <li><a href dropdown-toggle data-edit="fontSize 1" style="font-size:14px">Small</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="bold" tooltip="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                            <a class="btn btn-default" data-edit="italic" tooltip="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                            <a class="btn btn-default" data-edit="strikethrough" tooltip="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                            <a class="btn btn-default" data-edit="underline" tooltip="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="insertunorderedlist" tooltip="Bullet list"><i class="fa fa-list-ul"></i></a>
+                            <a class="btn btn-default" data-edit="insertorderedlist" tooltip="Number list"><i class="fa fa-list-ol"></i></a>
+                            <a class="btn btn-default" data-edit="outdent" tooltip="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+                            <a class="btn btn-default" data-edit="indent" tooltip="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="justifyleft" tooltip="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                            <a class="btn btn-default" data-edit="justifycenter" tooltip="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                            <a class="btn btn-default" data-edit="justifyright" tooltip="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                            <a class="btn btn-default" data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                        </div>
+                        <div class="btn-group dropdown">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" tooltip="Hyperlink"><i class="fa fa-link"></i></a>
+                            <div class="dropdown-menu">
+                                <div class="input-group m-l-xs m-r-xs">
+                                    <input class="form-control input-sm" onclick="return false;" placeholder="URL" type="text" data-edit="createLink"/>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-default" type="button">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="btn btn-default" data-edit="unlink" tooltip="Remove Hyperlink"><i class="fa fa-cut"></i></a>
+                        </div>
+
+                        <div class="btn-group">
+                            <a class="btn btn-default" tooltip="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
+                            <input type="file" data-edit="insertImage" style="position:absolute; opacity:0; width:41px; height:34px" />
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="undo" tooltip="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                            <a class="btn btn-default" data-edit="redo" tooltip="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                        </div>
+                    </div>
+                    <div ui-jq="wysiwyg" ng-model='newActivity.instructions' class="form-control" style="overflow:scroll;height:200px;max-height:200px">
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" ng-model='newActivity.instructions'></textarea>
+                </div>
+
+                
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+                <button type="submit" ng-click="post(modalInstance)" class="btn btn-success" ng-disabled="form.$invalid">Save</button>
+            </footer>
+        </div>
+    </form>
+</div>
+<!--
+<div class="modal-body">
+    <ul>
+        <li ng-repeat="item in items">
+            <a ng-click="selected.item = item">{{ item}}</a>
+        </li>
+    </ul>
+    Selected: <b>{{ selected.item}}</b>
+</div>
+    <div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">Save</button>
+</div>
+
+-->
