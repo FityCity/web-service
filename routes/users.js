@@ -6,7 +6,7 @@ var authCtrl = require('./auth');
 var usersRoute = router.route('/');
 
 /*  GET: users  */
-usersRoute.get(authCtrl.isAuthenticated, function(req, res) {
+usersRoute.get(function(req, res) {
 
   User.find(function(err, users) {
     if (err){
