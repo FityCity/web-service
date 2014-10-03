@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
+// app.use('/', routes);
 app.use('/users', users);
 app.use('/activities', activities);
 app.use('/vendors', vendors);
