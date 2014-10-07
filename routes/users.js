@@ -7,13 +7,13 @@ var usersRoute = router.route('/');
 
 /*  GET: users  */
 usersRoute.get(function(req, res) {
-
-  User.find(function(err, users) {
-    if (err){
-      res.send(err);
-    }
-    res.json({user:req.user.username,data:users});
-  });
+  res.send("This is a test");
+  // User.find(function(err, users) {
+  //   if (err){
+  //     res.send(err);
+  //   }
+  //   res.json({data:users});
+  // });
 });
 
 
