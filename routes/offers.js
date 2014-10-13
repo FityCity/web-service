@@ -1,25 +1,22 @@
-var express = require('express');
-var router = express.Router();
+app=require('../app')
 var Offer = require('../models/offer');
 
-var offersRoute = router.route('/');
 
 
 /*  GET: offers  */
-offersRoute.get(function(req, res) {
-
+app.get('/offers',function(req,res){
   Offer.find(function(err, offers) {
     if (err){
       res.send(err);
     }
     res.json(offers);
   });
-});
+})
+
 
 
  /*  POST: offers  */
-offersRoute.post(function(req, res) {
-
+ app.post('/offers',function(req,res){
   // Create a new instance of the offer model
   var offer = new Offer();
 
@@ -36,7 +33,4 @@ offersRoute.post(function(req, res) {
     }
     res.json({ message: 'offer added!', data: offer });
   });
-});
-
-
-module.exports = router;
+ })

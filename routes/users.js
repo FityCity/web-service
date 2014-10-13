@@ -1,26 +1,21 @@
-var express = require('express');
-var router = express.Router();
+app=require('../app')
 var User = require('../models/user');
 
-var authCtrl = require('./auth');
-var usersRoute = router.route('/');
-
 /*  GET: users  */
-usersRoute.get(function(req, res) {
-  res.send("This is a test");
-  // User.find(function(err, users) {
-  //   if (err){
-  //     res.send(err);
-  //   }
-  //   res.json({data:users});
-  // });
-});
+app.get('/users',function(req,res){
+	User.find(function(err, users) {
+    if (err){
+      res.send(err);
+    }
+    res.json(users);
+  });
+
+})
 
 
  /*  POST: users  */
-usersRoute.post(function(req, res) {
-
-  // Create a new instance of the User model
+app.post('/users',function(req,res){
+	// Create a new instance of the User model
   var user = new User();
 
   // Set the user properties that came from the POST data
@@ -36,7 +31,4 @@ usersRoute.post(function(req, res) {
     }
     res.json({ message: 'User added!', data: user });
   });
-});
-
-
-module.exports = router;
+})
