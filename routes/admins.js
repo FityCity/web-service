@@ -1,26 +1,18 @@
-var express = require('express');
-var router = express.Router();
-
+app=require('../app')
 var Admin = require('../models/admin');
 
-var adminsRoute = router.route('/');
-
-
-/*  GET: admins  */
-adminsRoute.get(function(req, res) {
-
+app.get('/admins',function(req,res){
   Admin.find(function(err, admins) {
     if (err){
       res.send(err);
     }
     res.json(admins);
   });
-});
 
+})
 
  /*  POST: admins  */
-adminsRoute.post(function(req, res) {
-
+app.post('/admins',function(req,res){
   // Create a new instance of the admin model
   var admin = new Admin();
 
@@ -35,7 +27,5 @@ adminsRoute.post(function(req, res) {
     }
     res.json({ message: 'admin added!', data: admin });
   });
-});
 
-
-module.exports = router;
+})
