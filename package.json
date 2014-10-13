@@ -1,35 +1,28 @@
 {
-  "name": "edu.unisa.fiteadmin",
+  "name": "fitecity",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.8.4",
-    "cookie-parser": "~1.3.3",
-    "debug": "~2.0.0",
     "express": "~4.9.0",
-    "jade": "~1.6.0",
-    "mongoose": "^3.8.16",
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
     "morgan": "~1.3.0",
-    "passport": "^0.2.1",
+    "serve-favicon": "~2.1.3",
+    "debug": "~2.0.0",
+    "hjs": "~0.0.6",
+	"mongoose": "^3.8.16",
+	"passport": "^0.2.1",
     "passport-http": "^0.2.2",
-    "pg": "2.x",
-    "request": "^2.42.0",
-    "serve-favicon": "~2.1.3"
+	"bcrypt-nodejs": "0.0.3",
+    "less-middleware": "1.0.x",
+	"pg": "2.x",
+    "request": "^2.42.0"
+	
   },
   "engines": {
     "node": "0.10.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ]
+  }
 }
