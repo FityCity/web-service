@@ -3,11 +3,11 @@ app=require('../app')
 
 /*  GET: vendors  */
 app.get('/vendors',function(req,res){
-  Vendor.find(function(err, activities) {
+  Vendor.find(function(err, vendors) {
     if (err){
       res.send(err);
     }
-    res.json(activities);
+    res.json(vendors);
   });
 })
 
@@ -28,10 +28,9 @@ app.post('/vendors',function(req,res){
     if (err){
       res.send(err);
     }
-    res.json({ message: 'vendor added!', data: vendor });
+    res.json({ data: vendor });
   });
 })
-
 
 
 /*  GET: vendor  */
@@ -54,3 +53,15 @@ app.put('/vendor/:vendor_id',function(req,res){
     });
   });
 })
+
+
+/*  GET: vendors  */
+app.get('/vendors/:vendor_id',function(req,res){
+  Vendor.findById(req.params.vendor_id, function(err, vendor) {
+    if (err){
+      res.send(err);
+    }
+    res.json(vendor);
+  });
+})
+
