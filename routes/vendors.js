@@ -33,24 +33,41 @@ app.post('/vendors',function(req,res){
 })
 
 
-/*  GET: vendor  */
-app.put('/vendor/:vendor_id',function(req,res){
-  Vendor.findById(req.params.vendor_id, function(err, vendor) {
-    if (err)
+/*  UPDATE: vendor  */
+app.put('/vendors',function(req,res){
+  Vendor.findById(req.body._id, function(err, vendor) {
+    if (err){
       res.send(err);
+    }
+
+    console.log("Request body", req.body);
+    console.log("Request params", req.params);
 
     // Change a property here
     vendor.name = req.body.name;
     vendor.address = req.body.address;
     vendor.image_url=req.body.image_url;
-    vendor.locaiton=req.body.location;
+    vendor.location=req.body.location;
+
     // Save the beer and check for errors
     vendor.save(function(err) {
-      if (err)
+      if (err){
         res.send(err);
+      }
 
       res.json(vendor);
     });
+  });
+})
+
+/*  DELETE: vendor  */
+app.delete('/vendors/:vendor_id',function(req,res){
+  Vendor.findByIdAndRemove(req.params.vendor_id, function(err) {
+    if (err){
+      res.send(err);
+    } else{
+      res.json({message:req.params.vendor_id + " deleted."});
+    };
   });
 })
 
