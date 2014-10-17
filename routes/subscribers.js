@@ -34,16 +34,11 @@ app.post('/subscribers',function(req,res){
 
 /* Delete:subscriber*/
 app.delete('/subscribers/:subscriber_id',function(req,res){
-  Subscriber.findById(req.params.subscriber_id, function(err, subscriber) {
-    if (err)
+  Subscriber.findByIdAndRemove(req.params.subscriber_id, function(err) {
+    if (err){
       res.send(err);
-
-    // Save the beer and check for errors
-    vendor.(function(err) {
-      if (err)
-        res.send(err);
-
-      res.json(vendor);
-    });
+    } else{
+      res.json({message:req.params.subscriber_id + " deleted."});
+    };
   });
 })
