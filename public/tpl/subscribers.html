@@ -8,13 +8,11 @@
     </div>
     <div class="table-responsive">
       <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'http',
+          ajax: '/subscribers',
           aoColumns: [
-            { mData: 'engine' },
-            { mData: 'browser' },
-            { mData: 'platform' },
-            { mData: 'version' },
-            { mData: 'grade' }
+            { mData: 'name' },
+            { mData: 'last_login_time' },
+            { mData: '_id' }
           ]
         }" class="table table-striped m-b-none">
         <thead>
@@ -22,8 +20,6 @@
             <th  style="width:20%">Rendering engine</th>
             <th  style="width:25%">Browser</th>
             <th  style="width:25%">Platform(s)</th>
-            <th  style="width:15%">Engine version</th>
-            <th  style="width:15%">CSS grade</th>
           </tr>
         </thead>
         <tbody>
