@@ -17,7 +17,7 @@ app.get('/subscribers',function(req,res){
 app.post('/subscribers',function(req,res){
 	// Create a new instance of the User model
   var subscriber = new Subscriber();
-
+  console.log(req)
   // Set the user properties that came from the POST data
   subscriber.name = req.body.name;
   subscriber.device_id = req.body.device_id;
@@ -29,5 +29,21 @@ app.post('/subscribers',function(req,res){
       res.send(err);
     }
     res.json({ message: 'subscribers added!', data: subscriber,request:req.body });
+  });
+})
+
+/* Delete:subscriber*/
+app.delete('/subscribers/:subscriber_id',function(req,res){
+  Subscriber.findById(req.params.subscriber_id, function(err, subscriber) {
+    if (err)
+      res.send(err);
+
+    // Save the beer and check for errors
+    vendor.(function(err) {
+      if (err)
+        res.send(err);
+
+      res.json(vendor);
+    });
   });
 })
