@@ -52,4 +52,44 @@ angular.module('app.services', [])
         }
     })
 
+    .factory('VendorService',function($http){
+
+
+        var vendors = {};
+        var getVendors = $http.get('/vendors');
+        getVendors.then(function(obj){
+            angular.forEach(obj.data, function(vendor, $index){
+                vendors[vendor._id] = vendor;
+            });
+            console.log("Vendors exist now: ", vendors);
+        }).catch(function(err){
+            console.log("Failed to load vendors:", err);
+        })
+
+        return {
+            all:function(){
+                return vendors;
+            },
+            get:function(id){
+                return vendor[id];
+            },
+            post:function(data){
+                var postVendor = $http.post('/vendors', data);
+                postVendor.then(function(success){
+                    vendors[success.data._id] = data;
+                }).catch(function(error){
+                    console.log("Failed to save vendor: ", error);
+                });
+            },
+            delete:function(vendor){
+                var deleteVendor = $http.delete('/vendors/' + vendor._id);
+                deleteVendor.then(function(resp){
+                    delete vendors[vendor._id];
+                }).catch(function(error){
+                    console.log("Failed to delete vendor: ", error);
+                })
+            }
+        }
+    })
+
 ;
