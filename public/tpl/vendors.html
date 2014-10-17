@@ -1,0 +1,66 @@
+<script>
+    $(function(){
+        $('#Container').mixItUp();
+    });
+</script>
+<div ng-controller="ActivityCtrl">
+
+
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">{{title}}</h1>
+</div>
+<div class="wrapper-md">
+    <div class="row">
+        <div class="col-lg-12 controls" ng-controller="ModalDemoCtrl">
+            <script type="text/ng-template" id="myModalContent.html">
+                <div ng-include="'tpl/modal_add_activity.html'"></div>
+            </script>
+            <button class="btn m-r-sm btn-sm btn-success btn-addon" ng-click="openAddActivityModal()"><i class="fa fa-plus"></i>Add</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default filter" data-filter="all">All</button>
+                <button type="button" class="btn btn-default filter" data-filter=".easy">Easy</button>
+                <button type="button" class="btn btn-default filter" data-filter=".normal">Normal</button>
+                <button type="button" class="btn btn-default filter" data-filter=".challenge">Challenge</button>
+            </div>
+        </div>
+    </div>
+  <div class="row">
+      <div id="Container" class="mixitup-container">
+          <script type="text/ng-template" id="videoModalContent.html">
+              <div ng-include="'tpl/modal_show_video.html'"></div>
+          </script>
+        <div ng-repeat="activity in activities" class="mix col-lg-3 {{activity.filter}}" style="display:inline-block">
+            <div class="panel b-a" >
+            <div class="panel-heading no-border bg-primary">
+                <span class="text-lt">Jumping Jacks</span>
+            </div>
+            <div class="item  thumb-box thumb-box-1">
+                <img src="{{activity.imgSrc}}"  class="img-full" alt="">
+                <div class="thumb-pane bg-black">
+                    <div class="thumbnail-text">
+                        <h4 class="clearfix">
+                            <a   title="">{{activity.title}}</a>
+                        </h4>
+                        <p>Lorem ipsum dolor sic amet dixit tu</p>
+                        <a ng-click="openDetail(activity)" class="btn btn-success thumb-more"><span class="button-content">View details</span></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="hbox text-center b-b b-t text-sm">
+                <a href class="col padder-s text-muted b-r ">
+                    <i class="icon ion-compose block  fa-2x"></i>
+                </a>
+                <a href class="col padder-s text-muted  " ng-click="delete(activity)">
+                    <i class="icon ion-trash-b block  fa-2x"></i>
+                </a>
+            </div>
+        </div></div>
+
+      </div>
+
+
+  </div>
+</div>
+</div>
