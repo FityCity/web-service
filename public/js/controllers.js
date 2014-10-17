@@ -67,7 +67,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
       }
 
   }])
-    .controller('ActivityCtrl',function ($scope,$modal, ActivityService) {
+  .controller('ActivityCtrl',function ($scope,$modal, ActivityService) {
         $scope.title="Activities";
         // for(var i=0;i<activities.length;i++){
         //     activities[i].imgSrc= $.jYoutube("//www.youtube.com/watch?v="+activities[i].youtube_id,"full")
@@ -101,6 +101,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                 }
             });
         }
+    })
+    .controller('SubscriberCtrl',function ($scope,$modal, ActivityService) {
+
     })
   // bootstrap controller
   .controller('AccordionDemoCtrl', ['$scope', function($scope) {
@@ -207,23 +210,17 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
     };
     var ModalActivityCtrl = function ($scope, $modalInstance, ActivityService, items) {
       $scope.modalInstance = $modalInstance;
-
       var activityTemplate = {
         title:"",
         youtube_id:"",
         instructions:""
       };
       $scope.newActivity = angular.copy(activityTemplate);
-
       $scope.post = function(modalInstance){
         console.log("Posting activity");
         ActivityService.post($scope.newActivity);
         modalInstance.close();
         $scope.newActivity = angular.copy(activityTemplate);
-      };
-
-      $scope.ok = function () {
-          $modalInstance.close($scope.selected.item);
       };
 
       $scope.cancel = function () {

@@ -61,6 +61,11 @@ var app = angular.module('app', [
                 templateUrl:'tpl/activities.html',
                 Controller:'ActivityCtrl'
             })
+            .state('app.subscribers',{
+                url:'/subscribers',
+                templateUrl:'tpl/subscribers.html',
+                Controller:'SubscriberCtrl'
+            })
             .state('app.ui', {
                 url: '/ui',
                 template: '<div ui-view class="fade-in-up"></div>'
