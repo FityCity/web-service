@@ -8,15 +8,19 @@
                 <p class="text-muted">Please fill the information to add a Modality.</p>
                 <div class="form-group">
                     <label>Modality name<em class="text-muted"> (allow 'a-zA-Z0-9', 4-30 length)</em></label>
-                    <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,30}$/" required >
+                    <input type="text" class="form-control" ng-model='newActivity.title' ng-pattern="/^[a-zA-Z0-9/\s/g]{4,30}$/" required >
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Modality ID</label>
                     <input type="email" class="form-control" ng-model="user.email" required >
+                </div> -->
+                <div class="form-group">
+                  <label>YouTube Video ID</label>
+                  <input type="text" ng-pattern="/^[a-zA-Z0-9]{4,30}$/" class="form-control" placeholder="video id" ng-model='newActivity.youtube_id' required>
                 </div>
                 <div class="form-group">
                     <label>Difficulty</label>
-                    <select class="form-control m-t" ng-model="f.b" required >
+                    <select class="form-control m-t" ng-model="newActivity.difficulty" required >
                         <option value="">Please choose</option>
                         <option value="easy">Easy -- 2 points</option>
                         <option value="medium">Medium -- 5 points</option>
@@ -36,7 +40,7 @@
                     </div>
                 </div>
                 -->
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Date</label>
                     <div ng-controller="DatepickerDemoCtrl">
                         <div class="input-group w-md">
@@ -46,7 +50,7 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!--
                 <div class="form-group">
                     <label>Phone</label>
@@ -58,7 +62,7 @@
                     </label>
                 </div>
                 -->
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="control-label">Description</label>
                     <div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#editor">
                         <div class="btn-group dropdown">
@@ -116,18 +120,20 @@
                             <a class="btn btn-default" data-edit="redo" tooltip="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
                         </div>
                     </div>
-                    <div ui-jq="wysiwyg" class="form-control" style="overflow:scroll;height:200px;max-height:200px">
-                        Add description&hellip;
+                    <div ui-jq="wysiwyg" ng-model='newActivity.instructions' class="form-control" style="overflow:scroll;height:200px;max-height:200px">
                     </div>
-                </div>
+                </div> -->
+
                 <div class="form-group">
-                  <label>YouTube URL</label>
-                  <input type="url" class="form-control" placeholder="http://" ng-model="contact.url" required>
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" ng-model='newActivity.instructions'></textarea>
                 </div>
+
+                
             </div>
             <footer class="panel-footer text-right bg-light lter">
                 <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-                <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Save</button>
+                <button type="submit" ng-click="post(modalInstance)" class="btn btn-success" ng-disabled="form.$invalid">Save</button>
             </footer>
         </div>
     </form>

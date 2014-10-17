@@ -1,0 +1,86 @@
+[
+    { id: 0, 
+      name: 'Bliss Organic' ,
+      image:'img/vendors/bliss_organic.jpg',
+      distance:0.1,
+      address:"7 Compton St",
+      points:50,
+      offers:[
+      {
+        name:'10% discount of coffee',
+        points:20
+      },
+      {
+        name:'The second cup half price',
+        points:50
+      }]
+    },
+      
+    { id: 1, 
+      name: 'Cafe Troppo',
+      image:'img/vendors/cafe_troppo.jpg',
+      distance:.4,
+      address:"42 Whitmore Square",
+      points:40, 
+      offers:[
+      {
+        name:'10% discount of coffee',
+        points:20
+      },
+      {
+        name:'The second cup half price',
+        points:50
+      }]
+    },
+
+    { id: 2, 
+      name: 'Hey Jupiter',
+      image:'img/vendors/hey_jupiter.jpg',
+      distance:.7,
+      address:"11 Ebenezer Pl" ,
+      points:30,
+      offers:[
+      {
+        name:'10% discount of coffee',
+        points:20
+      },
+      {
+        name:'The second cup half price',
+        points:50
+      }]
+    },
+
+    { id: 3, 
+      name: "Paddy's Lantern",
+      image:'img/vendors/paddys_lantern.jpg',
+      distance:1.1,
+      address:"219 Gilbert St",
+      points:20,
+      offers:[
+      {
+        name:'10% discount of coffee',
+        points:20
+      },
+      {
+        name:'The second cup half price',
+        points:50
+      }]
+    },
+
+    { id: 4, 
+      name: "Sad Cafe",
+      image:'img/vendors/sad_cafe.jpg',
+      distance:1.5,
+      address:"Shop 3,10 Ebenezer Pl",
+      points:10,
+      offers:[
+      {
+        name:'10% discount of coffee',
+        points:20
+      },
+      {
+        name:'The second cup half price',
+        points:50
+      }]
+    }
+  ]
