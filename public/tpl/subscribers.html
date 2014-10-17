@@ -8,7 +8,7 @@
     </div>
     <div class="table-responsive">
       <table ui-jq="dataTable" ui-options="{
-          ajax: '/subscribers',
+          ajax: '{{dns}}/subscribers',
           aoColumns: [
             { mData: 'name' },
             { mData: 'last_login_time' },

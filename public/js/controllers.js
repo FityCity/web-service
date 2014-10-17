@@ -8,7 +8,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
   .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', '$rootScope',
     function( $scope,   $translate,   $localStorage,   $window,$rootScope ) {
         //config the dns
-        $rootScope.dns="localhost:5000"
+        $rootScope.dns="http://fitecity.herokuapp.com"
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
