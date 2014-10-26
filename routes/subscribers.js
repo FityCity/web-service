@@ -7,7 +7,7 @@ app.get('/subscribers',function(req,res){
     if (err){
       res.send(err);
     }
-    res.json(subscribers);
+    res.json({data:subscribers});
   });
 
 })
