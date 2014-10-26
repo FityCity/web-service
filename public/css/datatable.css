@@ -1,0 +1,5 @@
+table.dataTable.hover tbody tr:hover{
+    background-color: #dee3f5 !important;
+    cursor: pointer;
+}
+

@@ -59,13 +59,15 @@ var app = angular.module('app', [
             })
             .state('app.activities',{
                 url:'/activities',
-                templateUrl:'tpl/activities.html',
-                Controller:'ActivityCtrl'
+                templateUrl:'tpl/activities.html'
             })
             .state('app.subscribers',{
                 url:'/subscribers',
-                templateUrl:'tpl/subscribers.html',
-                Controller:'SubscriberCtrl'
+                templateUrl:'tpl/subscribers.html'
+            })
+            .state('app.subscriber_details',{
+                url:'/subscribers/:subscriberId',
+                templateUrl:'tpl/subscriber_details.html'
             })
             .state('app.ui', {
                 url: '/ui',
