@@ -7,7 +7,17 @@ app.get('/subscribers',function(req,res){
     if (err){
       res.send(err);
     }
-    res.json(subscribers);
+    res.json({data:subscribers});
+  });
+
+})
+
+app.get('/subscribers/:subscriber_id',function(req,res){
+  Subscriber.findById(req.params.subscriber_id,function(err, subscriber) {
+    if (err){
+      res.send(err);
+    }
+    res.json(subscriber);
   });
 
 })
@@ -17,7 +27,9 @@ app.get('/subscribers',function(req,res){
 app.post('/subscribers',function(req,res){
 	// Create a new instance of the User model
   var subscriber = new Subscriber();
-
+  console.log(req.body)
+  console.log(req.params)
+  console.log(req.query)
   // Set the user properties that came from the POST data
   subscriber.name = req.body.name;
   subscriber.device_id = req.body.device_id;
@@ -28,6 +40,17 @@ app.post('/subscribers',function(req,res){
     if (err){
       res.send(err);
     }
-    res.json({ message: 'subscribers added!', data: subscriber,request:req.body });
+    res.json({ message: 'subscribers added!', data: subscriber });
+  });
+})
+
+/* Delete:subscriber*/
+app.delete('/subscribers/:subscriber_id',function(req,res){
+  Subscriber.findByIdAndRemove(req.params.subscriber_id, function(err) {
+    if (err){
+      res.send(err);
+    } else{
+      res.json({message:req.params.subscriber_id + " deleted."});
+    };
   });
 })

@@ -5,8 +5,10 @@
 angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
 
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 
-    function(              $scope,   $translate,   $localStorage,   $window ) {
+  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', '$rootScope',
+    function( $scope,   $translate,   $localStorage,   $window,$rootScope ) {
+        //config the dns
+
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
@@ -102,7 +104,22 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             });
         }
     })
-    .controller('SubscriberCtrl',function ($scope,$modal, ActivityService) {
+  .controller('SubscriberCtrl',function ($scope,$rootScope,$location) {
+        var subscriberTable=$('#table-subscriber').DataTable( {
+            ajax: $rootScope.dns+'/subscribers',
+            aoColumns: [
+                { mData: 'name' },
+                { mData: 'last_login_time' },
+                { mData: '_id' }
+            ]
+        } );
+        $('#table-subscriber tbody').on( 'click', 'tr', function () {
+            //console.log($location.path())
+            //console.log(subscriberTable.row( this ).data())
+            $location.path('/app/subscribers/0')
+            $scope.$apply();
+        } );
+
 
     })
   // bootstrap controller
