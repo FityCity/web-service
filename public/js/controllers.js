@@ -119,6 +119,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             $location.path('/app/subscribers/0')
             $scope.$apply();
         } );
+  })
 
 
     .controller('VendorCtrl', function($scope, $modal, VendorService){
