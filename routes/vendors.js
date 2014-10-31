@@ -78,7 +78,12 @@ app.get('/vendors/:vendor_id',function(req,res){
     if (err){
       res.send(err);
     }
-    res.json(vendor);
+    vendor.distance = '0.1';
+    Points.findOne({'user_id':req.params.user_id, 
+                    'vendor_id':eq.params.vendor_id}, function(err, points){
+      vendor.points = points.points || 0;
+      res.json(vendor);
+    })
   });
 })
 
