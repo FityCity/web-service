@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 // Define our beer schema
 var VendorSchema   = new mongoose.Schema({
   name: String,
-  address: String,
-  image_url: String,
-  location:String 		//GPS location
+  image: String,
+  address: String,	//GPS location
+  offers: Array
 });
 
 // Export the Mongoose model
