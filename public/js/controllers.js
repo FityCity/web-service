@@ -119,9 +119,13 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             $location.path('/app/subscribers/0')
             $scope.$apply();
         } );
+  })
 
 
+    .controller('VendorCtrl', function($scope, $modal, VendorService){
+        $scope.vendors = VendorService.all();
     })
+
   // bootstrap controller
   .controller('AccordionDemoCtrl', ['$scope', function($scope) {
     $scope.oneAtATime = true;
@@ -483,7 +487,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
   }])
 
-  // Flot Chart controller 
+  // Flot Chart controller
   .controller('FlotChartDemoCtrl', ['$scope', function($scope) {
     $scope.d = [ [1,6.5],[2,6.5],[3,7],[4,8],[5,7.5],[6,7],[7,6.8],[8,7],[9,7.2],[10,7],[11,6.8],[12,7] ];
 
@@ -501,10 +505,10 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
     for (var i = 0; i < 20; ++i) {
       $scope.d2.push([i, Math.sin(i)]);
-    }   
+    }
 
-    $scope.d3 = [ 
-      { label: "iPhone5S", data: 40 }, 
+    $scope.d3 = [
+      { label: "iPhone5S", data: 40 },
       { label: "iPad Mini", data: 10 },
       { label: "iPad Mini Retina", data: 20 },
       { label: "iPhone4S", data: 12 },

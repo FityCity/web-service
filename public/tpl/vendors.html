@@ -1,0 +1,55 @@
+
+<div ng-controller="VendorCtrl">
+
+
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Vendors</h1>
+</div>
+<div class="wrapper-md">
+    <div class="row" style="padding-bottom:20px;">
+        <div class="col-lg-12 controls" ng-controller="ModalDemoCtrl">
+            <script type="text/ng-template" id="myModalContent.html">
+                <div ng-include="'tpl/modal_add_vendor.html'"></div>
+            </script>
+            <button class="btn m-r-sm btn-sm btn-success btn-addon" ng-click="openAddVendorModal()"><i class="fa fa-plus"></i>Add</button>
+        </div>
+    </div>
+  <div class="row">
+      <div id="Container" class="">
+        <div ng-repeat="vendor in vendors" class="mix col-lg-3" style="display:inline-block">
+            <div class="panel b-a" >
+                <div class="panel-heading no-border bg-primary">
+                    <span class="text-lt">{{vendor.name}}</span>
+                </div>
+                <div class="item  thumb-box thumb-box-1" style="max-height:170px;overflow:hidden;">
+                    <img ng-src="{{vendor.image_url}}"  class="img-full" alt="">
+                    <div class="thumb-pane bg-black">
+                        <div class="thumbnail-text">
+                            <h4 class="clearfix">
+                                <a   title="">{{vendor.name}}</a>
+                            </h4>
+                            <p>{{vendor.address}}</p>
+                            <a ng-click="openDetail(vendor)" class="btn btn-success thumb-more"><span class="button-content">View details</span></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="hbox text-center b-b b-t text-sm">
+                    <a href class="col padder-s text-muted b-r ">
+                        <i class="icon ion-compose block  fa-2x"></i>
+                    </a>
+                    <a href class="col padder-s text-muted  " ng-click="delete(vendor)">
+                        <i class="icon ion-trash-b block  fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+
+  </div>
+</div>
+</div>
