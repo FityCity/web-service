@@ -22,8 +22,8 @@ var app = angular.module('app', [
     function ($rootScope,   $state,   $stateParams,Permission,UserService,VendorService,ActivityService,AppUserService) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-//        $rootScope.dns="http://fitecity.herokuapp.com";
-        $rootScope.dns="http://localhost:5000";
+        $rootScope.dns="http://fitecity.herokuapp.com";
+//        $rootScope.dns="http://localhost:5000";
         Permission.defineRole('admin',function(stateParams){
             return UserService.isLogin()
         })

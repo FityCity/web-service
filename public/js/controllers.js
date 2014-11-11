@@ -149,10 +149,6 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                 }
             });
 
-            modalInstance.result.then(function () {
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
 
         }
 
