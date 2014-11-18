@@ -1,7 +1,6 @@
 app=require('../app')
 var Adventure = require('../models/adventure');
 
-console.log(Adventure);
 /*  GET: adventures  */
 app.get('/adventures',function(req,res){
 	Adventure.find(function(err, adventures) {
@@ -37,3 +36,26 @@ app.post('/adventures',function(req,res){
     res.json({ message: 'Adventure added!', data: adventure });
   });
 });
+
+
+/*  DELETE: vendor  */
+app.delete('/adventures/:adventure_id',function(req,res){
+  Adventure.findByIdAndRemove(req.params.adventure_id, function(err) {
+    if (err){
+      res.send(err);
+    } else{
+      res.json({message:req.params.adventure_id + " deleted."});
+    };
+  });
+});
+
+
+/*  GET: vendors  */
+app.get('/adventures/:adventure_id',function(req,res){
+  Adventure.findById(req.params.adventure_id, function(err, adventure) {
+    if (err){
+      res.send(err);
+    }
+      res.json(adventure);
+    })
+  });
