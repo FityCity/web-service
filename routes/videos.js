@@ -28,6 +28,15 @@ app.get('/videos',function(req,res){
   });
 });
 
+app.get('/videos/all',function(req,res){
+  Video.find(function(err, videos) {
+    if (err){
+      res.send(err);
+    }
+    res.json(videos);
+  });
+});
+
 
 /*  GET: video by video_id  */
 app.get('/videos/:video_id',function(req,res){

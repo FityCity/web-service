@@ -9,6 +9,7 @@ var SubscriberSchema   = new mongoose.Schema({
   gender: String,
   device_id: String,
   facebook_id: String,
+  image_url:String,
   abuse_flag: Boolean,
   last_login_time: Date
 });

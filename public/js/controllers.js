@@ -160,7 +160,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                 size: size,
                 resolve: {
                     activity: function () {
-                        return $scope.activity;
+                        return activity;
                     }
                 }
             });
@@ -194,14 +194,35 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             });
         }
     })
-  .controller('SubscriberCtrl',function ($scope,$rootScope,$location) {
+  .controller('SubscriberCtrl',function ($scope,$rootScope,$location,$filter) {
         var subscriberTable=$('#table-subscriber').DataTable( {
             ajax: $rootScope.dns+'/subscribers',
-            aoColumns: [
-                { mData: 'name' },
-                { mData: 'last_login_time' },
-                { mData: '_id' }
+            "columns": [
+                { "data": "name" },
+                {
+                    "data": "gender",
+                    "render": function ( data, type, full, meta ) {
+                        return data==null?"":data;
+                    }
+                },
+                {
+                    "data": "email",
+                    "render": function ( data, type, full, meta ) {
+                        return data==null?"":data;
+                    }
+                },
+                {
+                    "data": "last_login_time",
+                    "render": function ( data, type, full, meta ) {
+                         return $filter('date')(data,'yyyy-MM-dd')
+                    }
+                }
             ]
+//            aoColumns: [
+//                { mData: 'name' },
+//                { mData: 'last_login_time' },
+//                { mData: '_id' }
+//            ]
         } );
         $('#table-subscriber tbody').on( 'click', 'tr', function () {
             //console.log($location.path())

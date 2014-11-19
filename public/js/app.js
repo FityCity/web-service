@@ -280,7 +280,7 @@ var app = angular.module('app', [
                 }
             })
             .state('app.mail.list', {
-                url: '/inbox/{fold}',
+                url: '/inbox/{filter}',
                 templateUrl: 'tpl/mail.list.html'
             })
             .state('app.mail.detail', {
