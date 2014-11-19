@@ -588,21 +588,40 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
     $scope.user = {};
     $scope.authError = null;
     $scope.login = function() {
-      $scope.authError = null;
-      // Try to login
-        console.log("test")
-      $http.post('api/login', {email: $scope.user.email, password: $scope.user.password})
-      .then(function(response) {
-        if ( !response.data.user ) {
-          $scope.authError = 'Email or Password not right';
-        }else{
-          $state.go('app.dashboard');
-        }
-      }, function(x) {
-        $scope.authError = 'Server Error';
-      });
+        $.ajax({
+            url:"/login",
+            type:'post',
+            data:{username:$scope.username,password:$scope.password},
+            success:function(data){
+                var success=data.success;
+                if(!success){
+                    console.log("failed")
+                    noty({
+                        text: "Login failed",
+                        type: 'error',
+                        theme: 'tisa_theme',
+                        layout: 'topCenter',
+                        closeWith: ['button','click'],
+                        timeout:1500,
+                        killer: true
+                    });
+                }else{
+                    $state.go('app.dashboard');
+                }
+            }
+        })
     };
   }])
+
+    .controller('LogoutController',function($scope,$state){
+        $scope.logout= function () {
+            console.log("ready to logout")
+            $.removeCookie('user');
+            $state.go('signin')
+        }
+
+
+    })
 
   // signup controller
   .controller('SignupFormController', ['$scope', '$http', '$state', function($scope, $http, $state) {

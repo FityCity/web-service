@@ -91,5 +91,32 @@ angular.module('app.services', [])
             }
         }
     })
+    .factory('UserService',function(){
+        function getCookie(cname) {
+            var cookie= $.cookie(cname);
+            var result;
+            if(cookie!=""&& cookie!=null){
+                result=JSON.parse($.cookie(cname));
+            }
+            return result;
+        }
+        function checkCookie() {
+            var user = getCookie("user");
 
+            if (user != "" && user!=null) {
+                console.log("Welcome again " + user.username);
+                return true;
+            } else {
+                console.log("no cookie of user")
+                return false;
+            }
+        }
+
+        return{
+            isLogin:function(){
+                return checkCookie();
+            }
+        }
+
+    })
 ;

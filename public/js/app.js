@@ -15,14 +15,19 @@ var app = angular.module('app', [
     'app.filters',
     'app.services',
     'app.directives',
-    'app.controllers'
+    'app.controllers',
+    'permission'
   ])
 .run(
-  [          '$rootScope', '$state', '$stateParams',
-    function ($rootScope,   $state,   $stateParams) {
+  [          '$rootScope', '$state', '$stateParams','Permission','UserService',
+    function ($rootScope,   $state,   $stateParams,Permission,UserService) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-        $rootScope.dns="http://fitecity.herokuapp.com"
+        $rootScope.dns="http://fitecity.herokuapp.com";
+        Permission.defineRole('admin',function(stateParams){
+            return UserService.isLogin()
+        })
+
     }
   ]
 )
@@ -49,17 +54,28 @@ var app = angular.module('app', [
             })
             .state('signin', {
                 url: '/signin',
-                templateUrl: 'tpl/signin.html',
-                Controller:'SigninController'
+                templateUrl: 'tpl/signin.html'
             })
 
             .state('app.dashboard', {
                 url: '/dashboard',
-                templateUrl: 'tpl/app_dashboard.html'
+                templateUrl: 'tpl/app_dashboard.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.activities',{
                 url:'/activities',
-                templateUrl:'tpl/activities.html'
+                templateUrl:'tpl/activities.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.vendors',{
                 url:'/vendors',
@@ -68,11 +84,23 @@ var app = angular.module('app', [
             })
             .state('app.subscribers',{
                 url:'/subscribers',
-                templateUrl:'tpl/subscribers.html'
+                templateUrl:'tpl/subscribers.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.subscriber_details',{
                 url:'/subscribers/:subscriberId',
-                templateUrl:'tpl/subscriber_details.html'
+                templateUrl:'tpl/subscriber_details.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.ui', {
                 url: '/ui',
