@@ -70,21 +70,83 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
   }])
   .controller('ActivityCtrl',function ($scope,$modal, ActivityService) {
+        $(function(){
+            $('#Container').mixItUp();
+        });
         $scope.title="Activities";
-        // for(var i=0;i<activities.length;i++){
-        //     activities[i].imgSrc= $.jYoutube("//www.youtube.com/watch?v="+activities[i].youtube_id,"full")
-        // }
         $scope.activities=ActivityService.all();
-        // $('#Container').mixItUp();
-
-        $scope.delete = function(activity){
+        function deleteActivity(activity){
           ActivityService.delete(activity);
-          $scope.activities = ActivityService.all();
         }
 
-        $scope.openDetail=function(activity,size){
-            $scope.activity=activity;
 
+        $scope.openAddActivityModal = function (size) {
+            var ModalActivityCtrl = function ($scope, $modalInstance, ActivityService, items) {
+                $scope.modalInstance = $modalInstance;
+                var activityTemplate = {
+                    title:"",
+                    youtube_id:"",
+                    instructions:""
+                };
+                $scope.newActivity = angular.copy(activityTemplate);
+                $scope.post = function(modalInstance){
+                    ActivityService.post($scope.newActivity);
+                    modalInstance.close();
+                    $scope.newActivity = angular.copy(activityTemplate);
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            };
+            var modalInstance = $modal.open({
+                templateUrl: 'myModalContent.html',
+                controller: ModalActivityCtrl,
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        }
+
+        $scope.openEditActivityModal = function (activity,size) {
+            var activity=activity
+            var EditModalActivityCtrl = function ($scope, $modalInstance,activity, ActivityService) {
+                $scope.activity=activity
+                $scope.modalInstance = $modalInstance;
+                $scope.put = function(modalInstance){
+                    ActivityService.put($scope.activity);
+                    modalInstance.close();
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+
+                };
+            };
+            var modalInstance = $modal.open({
+                templateUrl: 'editActiviyModal.html',
+                controller: EditModalActivityCtrl,
+                size: size,
+                resolve: {
+                    activity:function(){
+                        return activity;
+                    }
+                }
+            });
+
+
+        }
+
+        $scope.openViewDetailModal=function(activity,size){
             var ModalVideoCtrl = function ($scope, $modalInstance, $sce, activity) {
                 $scope.activity=activity;
                 $scope.videoSrc=$sce.trustAsResourceUrl("http://www.youtube.com/embed/"+activity.youtube_id);
@@ -96,6 +158,34 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                 templateUrl: 'videoModalContent.html',
                 controller: ModalVideoCtrl,
                 size: size,
+                resolve: {
+                    activity: function () {
+                        return $scope.activity;
+                    }
+                }
+            });
+        }
+
+        $scope.openDeleteActivityModal=function(activity,size){
+            $scope.activity=activity;
+            var ModalConfirmCtrl = function ($scope, $modalInstance, $sce, activity,ActivityService) {
+                $scope.activity=activity;
+                $scope.modalInstance=$modalInstance;
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+                $scope.confirm=function(modalInstance){
+                    console.log(activity)
+                    console.log('confirm delete')
+                    ActivityService.delete(activity)
+                    modalInstance.close();
+                }
+
+            };
+            var modalInstance = $modal.open({
+                templateUrl: 'deleteActivityModal.html',
+                controller: ModalConfirmCtrl,
+                size: 'sm',
                 resolve: {
                     activity: function () {
                         return $scope.activity;
@@ -213,6 +303,8 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
       $scope.status.isopen = !$scope.status.isopen;
     };
   }])
+
+
   .controller('ModalDemoCtrl', ['$scope', '$modal', '$log', function($scope, $modal, $log) {
     $scope.items = ['item1', 'item2', 'item3'];
     var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
@@ -229,25 +321,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $modalInstance.dismiss('cancel');
       };
     };
-    var ModalActivityCtrl = function ($scope, $modalInstance, ActivityService, items) {
-      $scope.modalInstance = $modalInstance;
-      var activityTemplate = {
-        title:"",
-        youtube_id:"",
-        instructions:""
-      };
-      $scope.newActivity = angular.copy(activityTemplate);
-      $scope.post = function(modalInstance){
-        console.log("Posting activity");
-        ActivityService.post($scope.newActivity);
-        modalInstance.close();
-        $scope.newActivity = angular.copy(activityTemplate);
-      };
 
-      $scope.cancel = function () {
-          $modalInstance.dismiss('cancel');
-      };
-    };
 
     $scope.open = function (size) {
       var modalInstance = $modal.open({
@@ -269,24 +343,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
     };
 
 
-    $scope.openAddActivityModal = function (size) {
-        var modalInstance = $modal.open({
-            templateUrl: 'myModalContent.html',
-            controller: ModalActivityCtrl,
-            size: size,
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
-        });
 
-        modalInstance.result.then(function () {
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-
-    }
   }])
   .controller('PaginationDemoCtrl', ['$scope', '$log', function($scope, $log) {
     $scope.totalItems = 64;

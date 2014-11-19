@@ -37,8 +37,15 @@ angular.module('app.services', [])
                     console.log("Failed to save activity: ", error);
                 });
             },
+            put:function(data){
+                var putActivity = $http.put('/activities', data);
+                putActivity.then(function(success){
+                }).catch(function(error){
+                    console.log("Failed to save activity: ", error);
+                });
+            },
             delete:function(activity){
-                var deleteActivity = $http.delete('/activities', {params:{activity_id:activity._id}});
+                var deleteActivity = $http.delete('/activities/'+activity._id, {params:{activity_id:activity._id}});
                 deleteActivity.then(function(resp){
                     console.log("Deleted activity: ", resp);
                     var index = activities.indexOf(activity);

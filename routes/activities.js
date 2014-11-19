@@ -29,3 +29,36 @@ app.post('/activities',function(req,res){
     res.json({ message: 'activity added!', data: activity });
   });
 })
+
+/*  UPDATE: activity  */
+app.put('/activities',function(req,res){
+  Activity.findById(req.body._id, function(err, activity) {
+    if (err){
+      res.send(err);
+    }
+    // Change a property here
+    activity.title = req.body.title;
+    activity.youtube_id = req.body.youtube_id;
+    activity.instructions=req.body.instructions;
+    activity.difficulty=req.body.difficulty;
+
+    // Save the beer and check for errors
+    activity.save(function(err) {
+      if (err){
+        res.send(err);
+      }
+      res.json(activity);
+    });
+  });
+})
+
+/*  DELETE: activity  */
+app.delete('/activities/:activity_id',function(req,res){
+  Activity.findByIdAndRemove(req.params.activity_id, function(err) {
+    if (err){
+      res.send(err);
+    } else{
+      res.json({message:req.params.activity_id + " deleted."});
+    };
+  });
+})

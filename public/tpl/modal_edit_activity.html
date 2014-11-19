@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edit an activity</h3>
+</div>
+<div class="modal-body">
+    <form name="form" class="form-validation">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="text-muted">Please fill the information to edit a Modality.</p>
+                <div class="form-group">
+                    <label>Modality name<em class="text-muted"> (allow 'a-zA-Z0-9', 4-30 length)</em></label>
+                    <input type="text" class="form-control" ng-model='activity.title' ng-pattern="/^[a-zA-Z0-9/\s/g]{4,30}$/" required >
+                </div>
+                <!-- <div class="form-group">
+                    <label>Modality ID</label>
+                    <input type="email" class="form-control" ng-model="user.email" required >
+                </div> -->
+                <div class="form-group">
+                  <label>YouTube Video ID</label>
+                  <input type="text" ng-pattern="/^[a-zA-Z0-9]{4,30}$/" class="form-control" placeholder="video id" ng-model='activity.youtube_id' required>
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select class="form-control m-t" ng-model="activity.difficulty" required >
+                        <option value="">Please choose</option>
+                        <option value="easy">Easy -- 2 points</option>
+                        <option value="medium">Medium -- 5 points</option>
+                        <option value="hard">Hard -- 10 points</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" ng-model='activity.instructions'></textarea>
+                </div>
+
+                
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+                <button type="submit" ng-click="put(modalInstance)" class="btn btn-success m-r" ng-disabled="form.$invalid">Save</button>
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+
+            </footer>
+        </div>
+    </form>
+</div>
+<!--
+<div class="modal-body">
+    <ul>
+        <li ng-repeat="item in items">
+            <a ng-click="selected.item = item">{{ item}}</a>
+        </li>
+    </ul>
+    Selected: <b>{{ selected.item}}</b>
+</div>
+    <div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">Save</button>
+</div>
+
+-->

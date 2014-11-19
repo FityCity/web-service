@@ -1,18 +1,10 @@
-<script>
-    $(function(){
-        $('#Container').mixItUp();
-    });
-</script>
 <div ng-controller="ActivityCtrl">
-
-
-
 <div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n font-thin h3">{{title}}</h1>
 </div>
 <div class="wrapper-md">
     <div class="row">
-        <div class="col-lg-12 controls" ng-controller="ModalDemoCtrl">
+        <div class="col-lg-12 controls" >
             <script type="text/ng-template" id="myModalContent.html">
                 <div ng-include="'tpl/modal_add_activity.html'"></div>
             </script>
@@ -20,8 +12,8 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-default filter" data-filter="all">All</button>
                 <button type="button" class="btn btn-default filter" data-filter=".easy">Easy</button>
-                <button type="button" class="btn btn-default filter" data-filter=".normal">Normal</button>
-                <button type="button" class="btn btn-default filter" data-filter=".challenge">Challenge</button>
+                <button type="button" class="btn btn-default filter" data-filter=".medium">Medium</button>
+                <button type="button" class="btn btn-default filter" data-filter=".hard">Hard</button>
             </div>
         </div>
     </div>
@@ -30,10 +22,10 @@
           <script type="text/ng-template" id="videoModalContent.html">
               <div ng-include="'tpl/modal_show_video.html'"></div>
           </script>
-        <div ng-repeat="activity in activities" class="mix col-lg-3 {{activity.filter}}" style="display:inline-block">
+        <div ng-repeat="activity in activities" class="mix col-lg-3 {{activity.difficulty}}" style="display:inline-block">
             <div class="panel b-a" >
             <div class="panel-heading no-border bg-primary">
-                <span class="text-lt">Jumping Jacks</span>
+                <span class="text-lt">{{activity.title}}</span>
             </div>
             <div class="item  thumb-box thumb-box-1">
                 <img src="{{activity.imgSrc}}"  class="img-full" alt="">
@@ -42,21 +34,27 @@
                         <h4 class="clearfix">
                             <a   title="">{{activity.title}}</a>
                         </h4>
-                        <p>Lorem ipsum dolor sic amet dixit tu</p>
-                        <a ng-click="openDetail(activity)" class="btn btn-success thumb-more"><span class="button-content">View details</span></a>
+                        <p>{{activity.instructions}}</p>
+                        <a ng-click="openViewDetailModal(activity)" class="btn btn-success thumb-more"><span class="button-content">View details</span></a>
                     </div>
                 </div>
-
             </div>
             <div class="hbox text-center b-b b-t text-sm">
-                <a href class="col padder-s text-muted b-r ">
+                <script type="text/ng-template" id="editActiviyModal.html">
+                    <div ng-include="'tpl/modal_edit_activity.html'"></div>
+                </script>
+                <a href class="col padder-s text-muted b-r " ng-click="openEditActivityModal(activity)">
                     <i class="icon ion-compose block  fa-2x"></i>
                 </a>
-                <a href class="col padder-s text-muted  " ng-click="delete(activity)">
+                <script type="text/ng-template" id="deleteActivityModal.html">
+                    <div ng-include="'tpl/modal_confirm.html'"></div>
+                </script>
+                <a href class="col padder-s text-muted  " ng-click="openDeleteActivityModal(activity)">
                     <i class="icon ion-trash-b block  fa-2x"></i>
                 </a>
             </div>
         </div></div>
+
 
       </div>
 

@@ -35,8 +35,9 @@
                 
             </div>
             <footer class="panel-footer text-right bg-light lter">
+                <button type="submit" ng-click="post(modalInstance)" class="btn btn-success m-r" ng-disabled="form.$invalid">Save</button>
                 <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-                <button type="submit" ng-click="post(modalInstance)" class="btn btn-success" ng-disabled="form.$invalid">Save</button>
+
             </footer>
         </div>
     </form>

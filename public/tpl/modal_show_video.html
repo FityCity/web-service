@@ -4,11 +4,19 @@
 </div>
 <div class="modal-body">
     <p align="center">
-      <iframe width="560" height="315" src="{{videoSrc}}" frameborder="0" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://s3.amazonaws.com/fitecity.videos/boxes.mp4" frameborder="0" allowfullscreen></iframe>
+        <video width="320" height="240" controls>
+            <source src="https://s3.amazonaws.com/fitecity.videos/boxes.mp4" type="video/mp4">
+        </video>
+        <!--<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="720" height="380"  title="My video">-->
+        <!--<param name="movie" value="https://s3.amazonaws.com/fitecity.videos/boxes.mp4" />-->
+        <!--<param name="quality" value="high" />-->
+        <!--<embed src="https://s3.amazonaws.com/fitecity.videos/boxes.mp4" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width=”720” height=”380“></embed>-->
+        <!--</object>-->
     </p>
     <!-- <p><img class="img-responsive" src="assets/img/portfolio/folio01.jpg" alt=""></p>-->
     <p>Jumping Jacks are a great addition to any at home cardio workout.</p>
 </div>
-<div class="modal-footer">                  
+<div class="modal-footer">
     <button class="btn btn-default" ng-click="cancel()">Close</button>
 </div>

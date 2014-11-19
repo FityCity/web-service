@@ -22,7 +22,7 @@ app.post('/login',function(req,res){
             var user=new Object();
             user.username=user.username
             user.role=user.role
-            res.cookie('user',JSON.stringify(user),{ maxAge: 900000, httpOnly: false });
+            res.cookie('user',JSON.stringify(user),{ maxAge: 3600000, httpOnly: false });
           }
           res.json({success:true})
         }

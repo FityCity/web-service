@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(session({ 
     secret: 'fitecitySecret', 
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 360000 },
     resave: true,
     saveUninitialized: true
 }));
