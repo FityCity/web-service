@@ -41,7 +41,7 @@ app.get('/videos/datatable/:user_id',function(req,res){
       elem.name=videos[i].user_id.name;
       elem.activity=videos[i].activity_id.title;
       elem.vendor=videos[i].vendor_id.name;
-      elem.video_url=videos[i].vidoe_url;
+      elem.video_url=videos[i].video_url;
       elem.timestamp=videos[i].timestamp;
       videosData.push(elem)
     }

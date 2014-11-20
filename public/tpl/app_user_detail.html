@@ -1,6 +1,6 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="AppUserDetailCtrl">
+<div id="outsideDiv" class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="AppUserDetailCtrl">
     <div class="col">
-        <div style="background:url(img/c4.jpg) center center; background-size:cover">
+        <div  style="background:url(img/c4.jpg) center center; background-size:cover">
             <div class="wrapper-lg bg-white-opacity">
                 <div class="row m-t">
                     <div class="col-sm-7">
@@ -15,7 +15,6 @@
                             <div style="height: 30px">
                                 <span>Banned</span>
                                 <label class="i-switch" style="vertical-align: middle" ng-init="showSpline=true">
-
                                     <input type="checkbox" ng-model="showSpline" class="ng-pristine ng-untouched ng-valid" style="vertical-align: middle">
                                     <i></i>
                                 </label>
@@ -39,20 +38,23 @@
             </div>
         </div>
         <tabset  class="tab-container tab-container-nobackground">
-            <tab heading="Videos Uploaded">
-                <div class="wrapper-md">
+            <tab id="firstTab" heading="Videos Uploaded">
+                <script type="text/ng-template" id="videoModalContent.html">
+                    <div ng-include="'tpl/modal_open_video.html'"></div>
+                </script>
+                <div id="firstClass" class="wrapper-md">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Videos
                         </div>
-                        <div class="table-responsive">
-                            <table id="table-videos" class="table hover m-b-none">
+                        <div class="table-responsive" ng-controller="AppUserDetailCtrl">
+                            <table id="table-videos" name="thisTable" class="table hover m-b-none">
                                 <thead>
                                 <tr>
-                                    <th >Name</th>
+                                    <th>Name</th>
                                     <th>Activity</th>
                                     <th>Vendor</th>
-                                    <th style="width:25%">Last login time</th>
+                                    <th style="width:25%">Post time</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -61,7 +63,6 @@
                         </div>
                     </div>
                 </div>
-
             </tab>
             <tab heading="Profile">Porfile to be updated</tab>
             <tab heading="Trancation History">To be done</tab>
