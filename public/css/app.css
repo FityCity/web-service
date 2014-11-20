@@ -3960,3 +3960,16 @@ a.text-black:hover {
     background-color: #7266ba;
   }
 }
+
+.modal-header{
+    text-align: center;
+}
+.panel-footer{
+    text-align: center;
+}
+.modal-footer{
+    text-align: center;
+}
+.modal-dialog.modal-sm{
+    margin-top:15%;
+}

@@ -15,12 +15,21 @@ var s3 = new AWS.S3();
 var S3_DNS = "https://s3.amazonaws.com";
 
 
-var User = require('../models/user');
+
 
 /*  GET: videos by user_id  */
 app.get('/videos',function(req,res){
   console.log("Videos page");
 	Video.find({user_id:req.params.user_id}, function(err, videos) {
+    if (err){
+      res.send(err);
+    }
+    res.json(videos);
+  });
+});
+
+app.get('/videos/all',function(req,res){
+  Video.find(function(err, videos) {
     if (err){
       res.send(err);
     }
@@ -90,4 +99,31 @@ app.post('/videos',function(req,res){
     });
 
   
+})
+
+/*  UPDATE: vendor  */
+app.put('/videos',function(req,res){
+  Video.findById(req.body._id, function(err, video) {
+    if (err){
+      res.send(err);
+    }
+
+    console.log(req.body.user_id)
+    console.log(video)
+    // Change a property here
+    video.user_id = req.body.user_id;
+    video.activity_id = req.body.activity_id;
+    video.vendor_id=req.body.vendor_id;
+    video.video_url=req.body.video_url;
+    video.timestamp=req.body.timestamp;
+
+    // Save the beer and check for errors
+    video.save(function(err) {
+      if (err){
+        res.send(err);
+      }
+
+      res.json(video);
+    });
+  });
 })

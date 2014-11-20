@@ -12,7 +12,8 @@ var AdminSchema   = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  role:String
 });
 
 // Execute before each user.save() call

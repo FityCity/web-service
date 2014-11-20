@@ -17,7 +17,6 @@ angular.module('app.services', [])
             angular.forEach(callback.data, function(activity, $index){
                 addThumbnail(activity);
                 activities.push(activity);
-                console.log(activity);
             });
         })
 
@@ -26,7 +25,12 @@ angular.module('app.services', [])
                 return activities;
             },
             get:function(id){
-                return activities[id];
+                for(var i=0;i<activities.length;i++){
+                    if(activities[i]._id==id){
+                        return activities[i]
+                    }
+                }
+                return null;
             },
             post:function(data){
                 var postActivity = $http.post('/activities', data);
@@ -37,8 +41,15 @@ angular.module('app.services', [])
                     console.log("Failed to save activity: ", error);
                 });
             },
+            put:function(data){
+                var putActivity = $http.put('/activities', data);
+                putActivity.then(function(success){
+                }).catch(function(error){
+                    console.log("Failed to save activity: ", error);
+                });
+            },
             delete:function(activity){
-                var deleteActivity = $http.delete('/activities', {params:{activity_id:activity._id}});
+                var deleteActivity = $http.delete('/activities/'+activity._id, {params:{activity_id:activity._id}});
                 deleteActivity.then(function(resp){
                     console.log("Deleted activity: ", resp);
                     var index = activities.indexOf(activity);
@@ -54,12 +65,11 @@ angular.module('app.services', [])
 
     .factory('VendorService',function($http){
 
-
-        var vendors = {};
+        var vendors = []
         var getVendors = $http.get('/vendors');
         getVendors.then(function(obj){
             angular.forEach(obj.data, function(vendor, $index){
-                vendors[vendor._id] = vendor;
+                vendors.push(vendor)
             });
             console.log("Vendors exist now: ", vendors);
         }).catch(function(err){
@@ -71,7 +81,12 @@ angular.module('app.services', [])
                 return vendors;
             },
             get:function(id){
-                return vendor[id];
+                for(var i=0;i<vendors.length;i++){
+                    if(vendors[i]._id==id){
+                        return vendors[i]
+                    }
+                }
+                return null;
             },
             post:function(data){
                 var postVendor = $http.post('/vendors', data);
@@ -91,5 +106,106 @@ angular.module('app.services', [])
             }
         }
     })
+    .factory('AppUserService',function($http){
 
+        var appUsers = []
+        var getUsers = $http.get('/appUsers');
+        getUsers.then(function(obj){
+            angular.forEach(obj.data, function(user, $index){
+                appUsers.push(user)
+            });
+            console.log(appUsers)
+        }).catch(function(err){
+            console.log("Failed to load vendors:", err);
+        })
+
+        return {
+            all:function(){
+                return appUsers;
+            },
+            get:function(id){
+                for(var i=0;i<appUsers.length;i++){
+                    if(appUsers[i]._id==id){
+                        return appUsers[i]
+                    }
+                }
+                return null;
+            }
+        }
+    })
+    .factory('VideoService',function($http,AppUserService,ActivityService,VendorService){
+
+        var videos = []
+        var getVideos = $http.get('/videos/all');
+        getVideos.then(function(obj){
+            angular.forEach(obj.data, function(video, $index){
+                video.appUser=AppUserService.get(video.user_id)
+                video.activity=ActivityService.get(video.activity_id)
+                video.vendor=VendorService.get(video.vendor_id)
+                videos.push(video)
+            });
+            console.log("Video are now: ", videos);
+        }).catch(function(err){
+            console.log("Failed to load videos:", err);
+        })
+
+        return {
+            all:function(){
+                return videos;
+            },
+            get:function(id){
+                for(var i=0;i<videos.length;i++){
+                    if(videos[i]._id==id){
+                        return videos[i]
+                    }
+                }
+                return null;
+            }
+
+        }
+    })
+    .factory('UserService',function(){
+        function getCookie(cname) {
+            var cookie= $.cookie(cname);
+            var result;
+            if(cookie!=""&& cookie!=null){
+                result=JSON.parse($.cookie(cname));
+            }
+            return result;
+        }
+        function checkCookie() {
+            var user = getCookie("user");
+
+            if (user != "" && user!=null && user!=undefined) {
+                console.log(user)
+                console.log("Welcome again " + user.username);
+                return true;
+            } else {
+                console.log("no cookie of user")
+                return false;
+            }
+        }
+
+        return{
+            isLogin:function(){
+                return checkCookie();
+            }
+        }
+
+    })
+    .factory('LoginService',function(){
+        function getCookie(cname) {
+            var cookie= $.cookie(cname);
+            var result;
+            if(cookie!=""&& cookie!=null){
+                result=JSON.parse($.cookie(cname));
+            }
+            return result;
+        }
+        return {
+            getUser:function(){
+                return getCookie("user");
+            }
+        }
+    })
 ;

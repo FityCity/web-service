@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var VideoSchema   = new mongoose.Schema({
   user_id: String,
   activity_id: String,
-  vendor_id: String, // Date of Birth
+  vendor_id: String, 
   video_url: String,
   timestamp: Date
 });

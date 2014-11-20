@@ -35,3 +35,38 @@ passport.deserializeUser(function(user, done) {
 });
 
 exports.isAuthenticated = passport.authenticate('basic', { session : true });
+
+var crypto = require('crypto'),
+    bucket = "fitecity",
+    awsKey = "AKIAITPFIQOGOOZO23HQ",
+    secret = "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";
+
+function sign(req, res, next) {
+ 
+    var fileName = req.body.fileName,
+        expiration = new Date(new Date().getTime() + 1000 * 60 * 5).toISOString();
+ 
+    var policy =
+    { "expiration": expiration,
+        "conditions": [
+            {"bucket": bucket},
+            {"key": fileName},
+            {"acl": 'public-read'},
+            ["starts-with", "$Content-Type", "video/mp4"]
+        ]};
+ 
+    var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
+    var signature = crypto.createHmac('sha1', secret).update(policyBase64).digest('base64');
+    res.json({
+      bucket: bucket, 
+      awsKey: awsKey, 
+      policy: policyBase64, 
+      signature: signature
+    });
+ 
+}
+ 
+// DON'T FORGET TO SECURE THIS ENDPOINT WITH APPROPRIATE AUTHENTICATION/AUTHORIZATION MECHANISM
+app.post('/policies', sign);
+
+
