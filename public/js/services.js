@@ -51,7 +51,6 @@ angular.module('app.services', [])
             delete:function(activity){
                 var deleteActivity = $http.delete('/activities/'+activity._id, {params:{activity_id:activity._id}});
                 deleteActivity.then(function(resp){
-                    console.log("Deleted activity: ", resp);
                     var index = activities.indexOf(activity);
                     if (index != -1) {
                         activities.splice(index, 1);
@@ -71,7 +70,6 @@ angular.module('app.services', [])
             angular.forEach(obj.data, function(vendor, $index){
                 vendors.push(vendor)
             });
-            console.log("Vendors exist now: ", vendors);
         }).catch(function(err){
             console.log("Failed to load vendors:", err);
         })
@@ -99,7 +97,10 @@ angular.module('app.services', [])
             delete:function(vendor){
                 var deleteVendor = $http.delete('/vendors/' + vendor._id);
                 deleteVendor.then(function(resp){
-                    delete vendors[vendor._id];
+                    var index = vendors.indexOf(vendor);
+                    if (index != -1) {
+                        vendors.splice(index, 1);
+                    }
                 }).catch(function(error){
                     console.log("Failed to delete vendor: ", error);
                 })

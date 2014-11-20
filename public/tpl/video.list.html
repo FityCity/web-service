@@ -14,11 +14,13 @@
     </div>
   </div>
   <!-- / header -->
-
+    <script type="text/ng-template" id="videoModalContent.html">
+        <div ng-include="'tpl/modal_open_video.html'"></div>
+    </script>
   <!-- list -->
   <ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
     <li ng-repeat="video in videos | filter:category" ng-class="labelClass(video.appUser.abuse_flag)" class="list-group-item clearfix b-l-3x">
-      <a ui-sref="app.page.profile" class="avatar thumb pull-left m-r">
+      <a class="avatar thumb pull-left m-r" ng-click="openVideo(video)">
         <img ng-src="img/default_user.png">
       </a>
       <div class="pull-right text-sm text-muted">
@@ -26,7 +28,7 @@
         <!--<i class="fa fa-paperclip ng-hide m-l-sm" ng-show="{{mail.attach}}"></i>-->
       </div>
       <div class="clear">
-        <div><a ui-sref="app.mail.detail({mailId:mail.id})" class="text-md">{{video.appUser.name}}</a><span class="label bg-light m-l-sm">{{video.vendor.name}}</span></div>
+        <div><a ng-click="openVideo(video)" class="text-md">{{video.appUser.name}}</a><span class="label bg-light m-l-sm">{{video.vendor.name}}</span></div>
         <div class="text-ellipsis m-t-xs">{{video.activity.title | limitTo:100}}</div>
       </div>      
     </li>
