@@ -1,7 +1,7 @@
 // Load required packages
 var mongoose = require('mongoose');
-var AppUser=require('appuser');
-var Vendor=require('vendor');
+var AppUser=require('./appuser');
+var Vendor=require('./vendor');
 
 // Define our beer schema
 var PointsSchema   = new mongoose.Schema({
@@ -12,8 +12,8 @@ var PointsSchema   = new mongoose.Schema({
   vendor_id: {
   	type:String,
   	ref:'Vendor'
-  }
-  points: Number,
+  },
+  points: Number
 });
 
 // Export the Mongoose model
