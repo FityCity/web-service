@@ -224,4 +224,9 @@ angular.module('app.directives', ['ui.load'])
         }
     };
   }])
+    .directive('labelColor', function(){
+        return function(scope, $el, attrs){
+            $el.css({'color': attrs.color});
+        }
+    });
 ;

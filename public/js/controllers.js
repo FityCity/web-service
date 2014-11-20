@@ -269,16 +269,85 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             $scope.$apply();
         } );
   })
-    .controller('AppUserDetailCtrl',function ($scope,$rootScope,$stateParams,AppUserService) {
+    .controller('AppUserDetailCtrl',function ($scope,$rootScope,$stateParams,$modal,$filter,AppUserService) {
         var user_id=$stateParams.appUserId;
+        $scope.appUser=AppUserService.get(user_id);
+        $(function(){
+            var videoTable=$('#table-videos').DataTable({
+                ajax: $rootScope.dns+'/videos/datatable/'+user_id,
+                "columns": [
+                    { "data": "name" },
+                    {
+                        "data": "activity",
+                        "render": function ( data, type, full, meta ) {
+                            return data==null?"":data;
+                        }
+                    },
+                    {
+                        "data": "vendor",
+                        "render": function ( data, type, full, meta ) {
+                            return data==null?"":data;
+                        }
+                    },
+                    {
+                        "data": "timestamp",
+                        "render": function ( data, type, full, meta ) {
+                            return $filter('date')(data,'yyyy-MM-dd')
+                        }
+                    }
+                ]
+            });
+            $('#table-videos tbody').on( 'click', 'tr', function () {
+                var data=videoTable.row( this ).data()
+                if(data.video_url){
+                    var ModalVideoCtrl = function ($scope, $modalInstance) {
+                        $scope.videoSrc=data.video_url;
+                        $scope.cancel = function () {
+                            $modalInstance.dismiss('cancel');
+                        };
+                    };
+                    var modalInstance = $modal.open({
+                        templateUrl: 'videoModalContent.html',
+                        controller: ModalVideoCtrl,
+                        size: "lg",
+                        resolve: {
 
-        $scope.appUser=AppUserService.get(user_id)
-        console.log($scope.appUser)
+                        }
+                    });
+                }
+            });
+        })
+
     })
 
     .controller('VendorCtrl', function($scope, $modal, VendorService){
         $scope.vendors = VendorService.all();
     })
+
+
+    .controller('VideoCtrl',  function($scope,VendorService) {
+        $scope.vendors=VendorService.all();
+
+        $scope.labels = [
+            {name: 'Banned', filter:'true', color:'#f05050'},
+            {name: 'Good', filter:'false', color:'#27c24c'}
+        ];
+
+
+        $scope.labelClass = function(label) {
+            return {
+                'b-l-danger': angular.lowercase(label) === true,
+                'b-l-success': angular.lowercase(label) === false ||angular.lowercase(label) === undefined
+            };
+        };
+
+    })
+
+    .controller('VideoListCtrl', function($scope, $stateParams,VideoService) {
+        $scope.category = $stateParams.filter;
+        $scope.videos = VideoService.all();
+    })
+
 
   // bootstrap controller
   .controller('AccordionDemoCtrl', ['$scope', function($scope) {

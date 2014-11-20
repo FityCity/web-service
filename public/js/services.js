@@ -177,7 +177,6 @@ angular.module('app.services', [])
             var user = getCookie("user");
 
             if (user != "" && user!=null && user!=undefined) {
-                console.log(user)
                 console.log("Welcome again " + user.username);
                 return true;
             } else {
