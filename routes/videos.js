@@ -1,6 +1,7 @@
 app=require('../app')
 var Video = require('../models/video');
-
+var Activity=require('../models/activity');
+var Vendor=require('../models/vendor');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var fs = require('fs');
@@ -28,6 +29,28 @@ app.get('/videos',function(req,res){
   });
 });
 
+/*  GET: videos by user_id for admin console */
+app.get('/videos/datatable/:user_id',function(req,res){
+  console.log(req.params)
+  Video.find({user_id:req.params.user_id}).populate('user_id activity_id vendor_id').exec(function(err,videos){
+    var result={}
+    var videosData=[]
+    for(var i=0;i<videos.length;i++){
+      elem={}
+      elem._id=videos[i]._id
+      elem.name=videos[i].user_id.name;
+      elem.activity=videos[i].activity_id.title;
+      elem.vendor=videos[i].vendor_id.name;
+      elem.video_url=videos[i].vidoe_url;
+      elem.timestamp=videos[i].timestamp;
+      videosData.push(elem)
+    }
+    result.data=videosData;
+    res.json(result)
+  })
+});
+
+/*  GET: all videos  */
 app.get('/videos/all',function(req,res){
   Video.find(function(err, videos) {
     if (err){

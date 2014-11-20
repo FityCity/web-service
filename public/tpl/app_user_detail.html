@@ -12,7 +12,15 @@
                                 <span class="h3 text-black">{{appUser.name}}</span>
                                 <small class="m-l">{{appUser.dob}}</small>
                             </div>
-                            <a href class="btn btn-sm btn-success btn-rounded">Follow</a>
+                            <div style="height: 30px">
+                                <span>Banned</span>
+                                <label class="i-switch" style="vertical-align: middle" ng-init="showSpline=true">
+
+                                    <input type="checkbox" ng-model="showSpline" class="ng-pristine ng-untouched ng-valid" style="vertical-align: middle">
+                                    <i></i>
+                                </label>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-sm-5">
@@ -30,44 +38,35 @@
                 </div>
             </div>
         </div>
-        <div class="wrapper bg-white b-b">
-            <ul class="nav nav-pills nav-sm">
-                <li class="active"><a href>Videos</a></li>
-                <li><a href>Profile</a></li>
-                <li><a href>Transaction History</a></li>
-            </ul>
-        </div>
-        <div class="wrapper-md">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    DataTables
+        <tabset  class="tab-container tab-container-nobackground">
+            <tab heading="Videos Uploaded">
+                <div class="wrapper-md">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Videos
+                        </div>
+                        <div class="table-responsive">
+                            <table id="table-videos" class="table hover m-b-none">
+                                <thead>
+                                <tr>
+                                    <th >Name</th>
+                                    <th>Activity</th>
+                                    <th>Vendor</th>
+                                    <th style="width:25%">Last login time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="table-responsive">
-                    <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'js/jquery/datatables/datatable.json',
-          aoColumns: [
-            { mData: 'engine' },
-            { mData: 'browser' },
-            { mData: 'platform' },
-            { mData: 'version' },
-            { mData: 'grade' }
-          ]
-        }" class="table table-striped m-b-none">
-                        <thead>
-                        <tr>
-                            <th style="width:20%">Rendering engine</th>
-                            <th style="width:25%">Browser</th>
-                            <th style="width:25%">Platform(s)</th>
-                            <th style="width:15%">Engine version</th>
-                            <th style="width:15%">CSS grade</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
+            </tab>
+            <tab heading="Profile">Porfile to be updated</tab>
+            <tab heading="Trancation History">To be done</tab>
+        </tabset>
+
     </div>
 
 </div>

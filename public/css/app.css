@@ -3973,3 +3973,8 @@ a.text-black:hover {
 .modal-dialog.modal-sm{
     margin-top:15%;
 }
+.tab-container-nobackground .tab-content{
+    padding: 15px;
+    background:transparent;
+    border: none;
+}

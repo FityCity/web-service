@@ -273,7 +273,40 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         var user_id=$stateParams.appUserId;
 
         $scope.appUser=AppUserService.get(user_id)
-        console.log($scope.appUser)
+        var videoTable=$('#table-videos').DataTable( {
+            ajax: $rootScope.dns+'/videos/datatable/'+user_id,
+            "columns": [
+                { "data": "name" },
+                {
+                    "data": "gender",
+                    "render": function ( data, type, full, meta ) {
+                        return data==null?"":data;
+                    }
+                },
+                {
+                    "data": "email",
+                    "render": function ( data, type, full, meta ) {
+                        return data==null?"":data;
+                    }
+                },
+                {
+                    "data": "last_login_time",
+                    "render": function ( data, type, full, meta ) {
+                        return $filter('date')(data,'yyyy-MM-dd')
+                    }
+                }
+            ]
+//            aoColumns: [
+//                { mData: 'name' },
+//                { mData: 'last_login_time' },
+//                { mData: '_id' }
+//            ]
+        } );
+        $('#table-subscriber tbody').on( 'click', 'tr', function () {
+            var data=subscriberTable.row( this ).data()
+            $location.path('/app/appUser/'+data._id)
+            $scope.$apply();
+        } );
     })
 
     .controller('VendorCtrl', function($scope, $modal, VendorService){
