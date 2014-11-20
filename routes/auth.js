@@ -43,14 +43,14 @@ var crypto = require('crypto'),
 
 function sign(req, res, next) {
  
-    var fileName = req.body.fileName,
+    var filename = (new Date()).toISOString(),
         expiration = new Date(new Date().getTime() + 1000 * 60 * 5).toISOString();
  
     var policy =
     { "expiration": expiration,
         "conditions": [
             {"bucket": bucket},
-            {"key": fileName},
+            {"key": filename},
             {"acl": 'public-read'},
             ["starts-with", "$Content-Type", "video/mp4"]
         ]};
@@ -61,7 +61,8 @@ function sign(req, res, next) {
       bucket: bucket, 
       awsKey: awsKey, 
       policy: policyBase64, 
-      signature: signature
+      signature: signature,
+      filename: fileName
     });
  
 }
