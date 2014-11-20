@@ -11,7 +11,7 @@ var session=require('express-session');
 // var users = require('./routes/users');
 //change here
 var app = module.exports=express();
-mongoose.connect(process.env.MONGOHQ_URL)
+mongoose.connect(process.env.MONGOHQ_URL);
 
 // Cross domain permisisons
 var allowCrossDomain = function(req, res, next) {
