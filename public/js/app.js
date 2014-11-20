@@ -267,7 +267,7 @@ var app = angular.module('app', [
             .state('app.mail', {
                 abstract: true,
                 url: '/mail',
-                templateUrl: 'tpl/mail.html',
+                templateUrl: 'tpl/video.html',
                 // use resolve to load other dependences
                 resolve: {
                     deps: ['uiLoad',
@@ -280,7 +280,7 @@ var app = angular.module('app', [
             })
             .state('app.mail.list', {
                 url: '/inbox/{filter}',
-                templateUrl: 'tpl/mail.list.html'
+                templateUrl: 'tpl/video.list.html'
             })
             .state('app.mail.detail', {
                 url: '/{mailId:[0-9]{1,4}}',

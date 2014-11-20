@@ -47,6 +47,7 @@ app.post('/appUsers',function(req,res){
   appUser.image_url=req.body.image_url;
   appUser.email=req.body.email;
   appUser.dob=req.body.dob;
+  appUser.abuse_flag=false;
   appUser.last_login_time = Date();
   // Save the user and check for errors
   appUser.save(function(err) {
