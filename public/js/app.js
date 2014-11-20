@@ -19,17 +19,16 @@ var app = angular.module('app', [
     'permission'
   ])
 .run(
-  [          '$rootScope', '$state', '$stateParams','Permission','UserService',
-    function ($rootScope,   $state,   $stateParams,Permission,UserService) {
+    function ($rootScope,   $state,   $stateParams,Permission,UserService,VendorService,ActivityService,AppUserService) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-        $rootScope.dns="http://fitecity.herokuapp.com";
+//        $rootScope.dns="http://fitecity.herokuapp.com";
+        $rootScope.dns="http://localhost:5000";
         Permission.defineRole('admin',function(stateParams){
             return UserService.isLogin()
         })
 
     }
-  ]
 )
 .config(
   [          '$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
@@ -82,9 +81,9 @@ var app = angular.module('app', [
                 templateUrl:'tpl/vendors.html',
                 Controller:'VendorCtrl'
             })
-            .state('app.subscribers',{
-                url:'/subscribers',
-                templateUrl:'tpl/subscribers.html',
+            .state('app.appUser',{
+                url:'/appUser',
+                templateUrl:'tpl/app_users.html',
                 data:{
                     permissions:{
                         only:['admin'],
@@ -92,9 +91,9 @@ var app = angular.module('app', [
                     }
                 }
             })
-            .state('app.subscriber_details',{
-                url:'/subscribers/:subscriberId',
-                templateUrl:'tpl/subscriber_details.html',
+            .state('app.appUser_detail',{
+                url:'/appUser/:appUserId',
+                templateUrl:'tpl/app_user_detail.html',
                 data:{
                     permissions:{
                         only:['admin'],

@@ -16,8 +16,8 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
       // config
       $scope.app = {
-        name: 'Angulr',
-        version: '1.1.3',
+        name: 'FiteCity',
+        version: '1.0.1',
         // for chart colors
         color: {
           primary: '#7266ba',
@@ -69,6 +69,45 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
       }
 
   }])
+    .controller('BlockController',function($scope,LoginService){
+        $scope.loginUser=LoginService.getUser();
+    })
+    // signin controller
+    .controller('SigninFormController', function($scope, $http, $state,LoginService) {
+        $scope.user = {};
+        $scope.authError = null;
+        $scope.login = function() {
+            $.ajax({
+                url:"/login",
+                type:'post',
+                data:{username:$scope.username,password:$scope.password},
+                success:function(data){
+                    var success=data.success;
+                    if(!success){
+                        console.log("failed")
+                        noty({
+                            text: "Login failed",
+                            type: 'error',
+                            theme: 'tisa_theme',
+                            layout: 'topCenter',
+                            closeWith: ['button','click'],
+                            timeout:1500,
+                            killer: true
+                        });
+                    }else{
+                        $state.go('app.dashboard');
+                    }
+                }
+            })
+        };
+    })
+
+    .controller('LogoutController',function($scope,$state,LoginService){
+        $scope.logout= function () {
+            $.removeCookie('user');
+            $state.go('signin')
+        }
+    })
   .controller('ActivityCtrl',function ($scope,$modal, ActivityService) {
         $(function(){
             $('#Container').mixItUp();
@@ -194,9 +233,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             });
         }
     })
-  .controller('SubscriberCtrl',function ($scope,$rootScope,$location,$filter) {
+  .controller('AppUserCtrl',function ($scope,$rootScope,$location,$filter) {
         var subscriberTable=$('#table-subscriber').DataTable( {
-            ajax: $rootScope.dns+'/subscribers',
+            ajax: $rootScope.dns+'/appUsers/datatable',
             "columns": [
                 { "data": "name" },
                 {
@@ -227,7 +266,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         $('#table-subscriber tbody').on( 'click', 'tr', function () {
             //console.log($location.path())
             //console.log(subscriberTable.row( this ).data())
-            $location.path('/app/subscribers/0')
+            $location.path('/app/appUser/0')
             $scope.$apply();
         } );
   })
@@ -661,45 +700,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
     ];
   }])
 
-  // signin controller
-  .controller('SigninFormController', ['$scope', '$http', '$state', function($scope, $http, $state) {
-    $scope.user = {};
-    $scope.authError = null;
-    $scope.login = function() {
-        $.ajax({
-            url:"/login",
-            type:'post',
-            data:{username:$scope.username,password:$scope.password},
-            success:function(data){
-                var success=data.success;
-                if(!success){
-                    console.log("failed")
-                    noty({
-                        text: "Login failed",
-                        type: 'error',
-                        theme: 'tisa_theme',
-                        layout: 'topCenter',
-                        closeWith: ['button','click'],
-                        timeout:1500,
-                        killer: true
-                    });
-                }else{
-                    $state.go('app.dashboard');
-                }
-            }
-        })
-    };
-  }])
 
-    .controller('LogoutController',function($scope,$state){
-        $scope.logout= function () {
-            console.log("ready to logout")
-            $.removeCookie('user');
-            $state.go('signin')
-        }
-
-
-    })
 
   // signup controller
   .controller('SignupFormController', ['$scope', '$http', '$state', function($scope, $http, $state) {

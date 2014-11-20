@@ -2,15 +2,16 @@ app.controller('MailCtrl',  function($scope,VendorService) {
     $scope.vendors=VendorService.all();
 
   $scope.labels = [
-    {name: 'Banned', filter:'client', color:'#f05050'},
-    {name: 'Good', filter:'work', color:'#27c24c'}
+    {name: 'Banned', filter:'true', color:'#f05050'},
+    {name: 'Good', filter:'false', color:'#27c24c'}
   ];
 
 
   $scope.labelClass = function(label) {
+      console.log(label)
     return {
-      'b-l-danger': angular.lowercase(label) === 'client',
-      'b-l-success': angular.lowercase(label) === 'work'      
+      'b-l-danger': angular.lowercase(label) === true,
+      'b-l-success': angular.lowercase(label) === false ||angular.lowercase(label) === undefined
     };
   };
 

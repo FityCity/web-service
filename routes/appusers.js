@@ -2,7 +2,7 @@ app=require('../app')
 var AppUser = require('../models/appuser');
 
 /*  GET: users  */
-app.get('/appUsers',function(req,res){
+app.get('/appUsers/datatable',function(req,res){
 	AppUser.find(function(err, appUsers) {
     if (err){
       res.send(err);
@@ -11,6 +11,17 @@ app.get('/appUsers',function(req,res){
   });
 
 })
+app.get('/appUsers',function(req,res){
+  AppUser.find(function(err, appUsers) {
+    if (err){
+      res.send(err);
+    }
+    res.json(appUsers);
+  });
+
+})
+
+
 
 app.get('/appUsers/:appUser_id',function(req,res){
   AppUser.findById(req.params.appUser_id,function(err, appUser) {
@@ -26,7 +37,7 @@ app.get('/appUsers/:appUser_id',function(req,res){
  /*  POST: users  */
 app.post('/appUsers',function(req,res){
 	// Create a new instance of the User model
-  var appUser = new appUser();
+  var appUser = new AppUser();
 
   // Set the user properties that came from the POST data
   appUser.name = req.body.name;

@@ -19,12 +19,12 @@ app.post('/login',function(req,res){
           sess.user=user;
           cookies=req.cookies.user
           if(!cookies){
-            var user=new Object();
-            user.username=user.username
-            user.role=user.role
-            res.cookie('user',JSON.stringify(user),{ maxAge: 3600000, httpOnly: false });
+            var loginUser=new Object();
+            loginUser.username=user.username
+            loginUser.role=user.role
+            res.cookie('user',JSON.stringify(loginUser),{ maxAge: 3600000, httpOnly: false });
           }
-          res.json({success:true})
+          res.json({success:true,user:user})
         }
         else{
           res.json({success:false})

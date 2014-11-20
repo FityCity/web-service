@@ -1,12 +1,10 @@
 app=require('../app')
 
-require('./users')
 require('./locations')
 require('./activities')
 require('./admins')
 require('./auth')
 require('./offers')
-require('./users')
 require('./vendors')
 require('./appusers')
 require('./videos')

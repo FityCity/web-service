@@ -25,7 +25,12 @@ angular.module('app.services', [])
                 return activities;
             },
             get:function(id){
-                return activities[id];
+                for(var i=0;i<activities.length;i++){
+                    if(activities[i]._id==id){
+                        return activities[i]
+                    }
+                }
+                return null;
             },
             post:function(data){
                 var postActivity = $http.post('/activities', data);
@@ -101,56 +106,42 @@ angular.module('app.services', [])
             }
         }
     })
-    .factory('SubscriberService',function($http){
+    .factory('AppUserService',function($http){
 
-        var vendors = []
-        var getVendors = $http.get('/vendors');
-        getVendors.then(function(obj){
-            angular.forEach(obj.data, function(vendor, $index){
-                vendors.push(vendor)
+        var appUsers = []
+        var getUsers = $http.get('/appUsers');
+        getUsers.then(function(obj){
+            angular.forEach(obj.data, function(user, $index){
+                appUsers.push(user)
             });
-            console.log("Vendors exist now: ", vendors);
+            console.log(appUsers)
         }).catch(function(err){
             console.log("Failed to load vendors:", err);
         })
 
         return {
             all:function(){
-                return vendors;
+                return appUsers;
             },
             get:function(id){
-                for(var i=0;i<vendors.length;i++){
-                    if(vendors[i]._id==id){
-                        return vendors[i]
+                for(var i=0;i<appUsers.length;i++){
+                    if(appUsers[i]._id==id){
+                        return appUsers[i]
                     }
                 }
                 return null;
-            },
-            post:function(data){
-                var postVendor = $http.post('/vendors', data);
-                postVendor.then(function(success){
-                    vendors[success.data._id] = data;
-                }).catch(function(error){
-                    console.log("Failed to save vendor: ", error);
-                });
-            },
-            delete:function(vendor){
-                var deleteVendor = $http.delete('/vendors/' + vendor._id);
-                deleteVendor.then(function(resp){
-                    delete vendors[vendor._id];
-                }).catch(function(error){
-                    console.log("Failed to delete vendor: ", error);
-                })
             }
         }
     })
-    .factory('VideoService',function($http){
+    .factory('VideoService',function($http,AppUserService,ActivityService,VendorService){
 
         var videos = []
         var getVideos = $http.get('/videos/all');
         getVideos.then(function(obj){
             angular.forEach(obj.data, function(video, $index){
-
+                video.appUser=AppUserService.get(video.user_id)
+                video.activity=ActivityService.get(video.activity_id)
+                video.vendor=VendorService.get(video.vendor_id)
                 videos.push(video)
             });
             console.log("Video are now: ", videos);
@@ -185,7 +176,8 @@ angular.module('app.services', [])
         function checkCookie() {
             var user = getCookie("user");
 
-            if (user != "" && user!=null) {
+            if (user != "" && user!=null && user!=undefined) {
+                console.log(user)
                 console.log("Welcome again " + user.username);
                 return true;
             } else {
@@ -200,5 +192,20 @@ angular.module('app.services', [])
             }
         }
 
+    })
+    .factory('LoginService',function(){
+        function getCookie(cname) {
+            var cookie= $.cookie(cname);
+            var result;
+            if(cookie!=""&& cookie!=null){
+                result=JSON.parse($.cookie(cname));
+            }
+            return result;
+        }
+        return {
+            getUser:function(){
+                return getCookie("user");
+            }
+        }
     })
 ;

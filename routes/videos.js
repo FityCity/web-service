@@ -15,7 +15,7 @@ var s3 = new AWS.S3();
 var S3_DNS = "https://s3.amazonaws.com";
 
 
-var User = require('../models/user');
+
 
 /*  GET: videos by user_id  */
 app.get('/videos',function(req,res){
