@@ -75,7 +75,7 @@ app.get('/videos/:video_id',function(req,res){
  /*  POST: users  */
 app.post('/videos',function(req,res){
 
-  console.log(req);
+
 
 	// Create a new instance of the User model
   var video = new Video();
@@ -89,7 +89,7 @@ app.post('/videos',function(req,res){
   var s3_path = video.vendor_id + "/" + 
                 video.activity_id + "/" +
                 video.user_id + "/" +
-                video.timestamp
+                req.body.timestamp
 
   video.video_url = S3_DNS + "/" + s3_bucket + '/' + s3_path;
   //Save the video and check for errors
