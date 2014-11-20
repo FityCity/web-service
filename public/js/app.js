@@ -15,16 +15,20 @@ var app = angular.module('app', [
     'app.filters',
     'app.services',
     'app.directives',
-    'app.controllers'
+    'app.controllers',
+    'permission'
   ])
 .run(
-  [          '$rootScope', '$state', '$stateParams',
-    function ($rootScope,   $state,   $stateParams) {
+    function ($rootScope,   $state,   $stateParams,Permission,UserService,VendorService,ActivityService,AppUserService) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-        $rootScope.dns="http://fitecity.herokuapp.com"
+//        $rootScope.dns="http://fitecity.herokuapp.com";
+        $rootScope.dns="http://localhost:5000";
+        Permission.defineRole('admin',function(stateParams){
+            return UserService.isLogin()
+        })
+
     }
-  ]
 )
 .config(
   [          '$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
@@ -49,30 +53,53 @@ var app = angular.module('app', [
             })
             .state('signin', {
                 url: '/signin',
-                templateUrl: 'tpl/signin.html',
-                Controller:'SigninController'
+                templateUrl: 'tpl/signin.html'
             })
 
             .state('app.dashboard', {
                 url: '/dashboard',
-                templateUrl: 'tpl/app_dashboard.html'
+                templateUrl: 'tpl/app_dashboard.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.activities',{
                 url:'/activities',
-                templateUrl:'tpl/activities.html'
+                templateUrl:'tpl/activities.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.vendors',{
                 url:'/vendors',
                 templateUrl:'tpl/vendors.html',
                 Controller:'VendorCtrl'
             })
-            .state('app.subscribers',{
-                url:'/subscribers',
-                templateUrl:'tpl/subscribers.html'
+            .state('app.appUser',{
+                url:'/appUser',
+                templateUrl:'tpl/app_users.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
-            .state('app.subscriber_details',{
-                url:'/subscribers/:subscriberId',
-                templateUrl:'tpl/subscriber_details.html'
+            .state('app.appUser_detail',{
+                url:'/appUser/:appUserId',
+                templateUrl:'tpl/app_user_detail.html',
+                data:{
+                    permissions:{
+                        only:['admin'],
+                        redirectTo: 'signin'
+                    }
+                }
             })
             .state('app.ui', {
                 url: '/ui',
@@ -252,7 +279,7 @@ var app = angular.module('app', [
                 }
             })
             .state('app.mail.list', {
-                url: '/inbox/{fold}',
+                url: '/inbox/{filter}',
                 templateUrl: 'tpl/mail.list.html'
             })
             .state('app.mail.detail', {

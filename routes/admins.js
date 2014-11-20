@@ -29,3 +29,22 @@ app.post('/admins',function(req,res){
   });
 
 })
+
+// app.put('/admins',function(req,res){
+//   Admin.findById(req.body._id, function(err, admin) {
+//     if (err){
+//       res.send(err);
+//     }
+//     // Change a property here
+//     admin.role=req.body.role
+   
+
+//     // Save the beer and check for errors
+//     admin.save(function(err) {
+//       if (err){
+//         res.send(err);
+//       }
+//       res.json(admin);
+//     });
+//   });
+// })
