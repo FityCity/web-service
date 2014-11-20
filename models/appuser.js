@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 // Define our beer schema
-var SubscriberSchema   = new mongoose.Schema({
+var AppUserSchema   = new mongoose.Schema({
   name: String,
   email: String,
   dob: Date, // Date of Birth
@@ -15,4 +15,4 @@ var SubscriberSchema   = new mongoose.Schema({
 });
 
 // Export the Mongoose model
-module.exports = mongoose.model('Subscriber', SubscriberSchema);
+module.exports = mongoose.model('AppUser', AppUserSchema);

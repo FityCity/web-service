@@ -16,11 +16,9 @@ app.controller('MailCtrl',  function($scope,VendorService) {
 
 });
 
-app.controller('MailListCtrl', ['$scope', 'mails', '$stateParams', function($scope, mails, $stateParams) {
+app.controller('MailListCtrl', ['$scope', '$stateParams','VideoService', function($scope, $stateParams,VideoService) {
   $scope.category = $stateParams.filter;
-  mails.all().then(function(mails){
-    $scope.mails = mails;
-  });
+  $scope.videos = VideoService.all();
 }]);
 
 app.controller('MailDetailCtrl', ['$scope', 'mails', '$stateParams', function($scope, mails, $stateParams) {
