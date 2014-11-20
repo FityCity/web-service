@@ -90,7 +90,7 @@ app.post('/videos',function(req,res){
   var s3_path = video.vendor_id + "/" + 
                 video.activity_id + "/" +
                 video.user_id + "/" +
-                video.timestamp
+                video.timestamp + ".mp4"
 
   video.video_url = S3_DNS + "/" + s3_bucket + '/' + s3_path;
 
