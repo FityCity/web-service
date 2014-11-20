@@ -1,5 +1,5 @@
 app=require('../app')
-var Subscriber = require('../models/appuser');
+var AppUser = require('../models/appuser');
 
 /*  GET: users  */
 app.get('/appUsers',function(req,res){
