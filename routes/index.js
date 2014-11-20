@@ -1,5 +1,6 @@
 app=require('../app')
 
+/*delete offers*/
 require('./locations')
 require('./activities')
 require('./admins')
