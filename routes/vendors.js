@@ -1,5 +1,54 @@
 var Vendor = require('../models/vendor');
+var gcm = require('node-gcm');
 app=require('../app')
+
+var SendPushNotification = function(){
+// create a message with default values
+// var message = new gcm.Message();
+
+// or with object values
+var message = new gcm.Message({
+    collapseKey: 'demo',
+    delayWhileIdle: true,
+    timeToLive: 3,
+    data: {
+        key1: 'message1',
+        key2: 'message2'
+    }
+});
+
+var sender = new gcm.Sender('AIzaSyCCk573UlttBoU6mPvzwsAQ1UwejxSggD4');
+var registrationIds = [];
+
+// OPTIONAL
+// add new key-value in data object
+//message.addDataWithKeyValue('key1','message1');
+//message.addDataWithKeyValue('key2','message2');
+
+// or add a data object
+//message.addDataWithObject({
+//    key1: 'message1',
+//    key2: 'message2'
+//});
+
+// or with backwards compatibility of previous versions
+//message.addData('key1','message1');
+//message.addData('key2','message2');
+
+
+message.collapseKey = 'demo';
+message.delayWhileIdle = true;
+message.timeToLive = 3;
+message.dryRun = true;
+// END OPTIONAL
+var Lee_regid = 'APA91bF-aiZfkPwGJCz_pC2Scfr1DuE5UX8TqN16WFggZk7xB1Rj1_H0OYWESNvCD3XvsYp7hI4zeZWYQb-v2k83egAGhFVxBzrNFkPgcbNbkk9fzjcxpwu6bPphDLIKirO4J-cbqgkVuBlE-HHq7NIxna2aaZYfOYq5NnJj_uABIk_XwHJDvXw';
+// At least one required
+registrationIds.push(Lee_regid);
+sender.send(message, registrationIds, 4, function (err, result) {
+    console.log(result);
+});
+}
+
 
 /*  GET: vendors  */
 app.get('/vendors',function(req,res){
@@ -21,7 +70,7 @@ app.post('/vendors',function(req,res){
   vendor.name = req.body.name;
   vendor.address = req.body.address;
   vendor.image_url=req.body.image_url;
-  vendor.locaiton=req.body.location;
+  vendor.location=req.body.location;
 
   // Save the vendor and check for errors
   vendor.save(function(err) {
@@ -44,7 +93,8 @@ app.put('/vendors/offers/:vendor_id',function(req,res){
     offer.description=req.body.description;
     offer.points=req.body.points;
     vendor.offers.push(offer);
-
+	SendPushNotification();
+	
     // Save the beer and check for errors
     vendor.save(function(err) {
       if (err){
