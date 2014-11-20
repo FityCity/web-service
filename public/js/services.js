@@ -86,10 +86,17 @@ angular.module('app.services', [])
                 }
                 return null;
             },
+            put:function(data){
+                var putVendor = $http.put('/vendors/'+data._id, data);
+                putVendor.then(function(success){
+                }).catch(function(error){
+                    console.log("Failed to save activity: ", error);
+                });
+            },
             post:function(data){
                 var postVendor = $http.post('/vendors', data);
                 postVendor.then(function(success){
-                    vendors[success.data._id] = data;
+                    vendors.push(data)
                 }).catch(function(error){
                     console.log("Failed to save vendor: ", error);
                 });

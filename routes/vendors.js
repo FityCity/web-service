@@ -32,16 +32,36 @@ app.post('/vendors',function(req,res){
   });
 })
 
-
-/*  UPDATE: vendor  */
-app.put('/vendors',function(req,res){
-  Vendor.findById(req.body._id, function(err, vendor) {
+app.put('/vendors/offers/:vendor_id',function(req,res){
+  Vendor.findById(req.params.vendor_id, function(err, vendor) {
     if (err){
       res.send(err);
     }
 
-    console.log("Request body", req.body);
-    console.log("Request params", req.params);
+    // Change a property here
+    var offer={}
+    offer.description=req.body.description;
+    offer.points=req.body.points;
+    vendor.offers.push(offer);
+
+    // Save the beer and check for errors
+    vendor.save(function(err) {
+      if (err){
+        res.send(err);
+      }
+
+      res.json(vendor);
+    });
+  });
+})
+
+
+/*  UPDATE: vendor  */
+app.put('/vendors/:vendor_id',function(req,res){
+  Vendor.findById(req.params.vendor_id, function(err, vendor) {
+    if (err){
+      res.send(err);
+    }
 
     // Change a property here
     vendor.name = req.body.name;

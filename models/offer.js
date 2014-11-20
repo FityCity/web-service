@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 
 // Define our beer schema
 var OfferSchema   = new mongoose.Schema({
-  name: String,
   points: Number,
   description: String,
   vendor_id: String
