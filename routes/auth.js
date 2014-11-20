@@ -38,8 +38,8 @@ exports.isAuthenticated = passport.authenticate('basic', { session : true });
 
 var crypto = require('crypto'),
     bucket = "fitecity",
-    awsKey = "AKIAITPFIQOGOOZO23HQ",
-    secret = "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";
+    awsKey = process.env.S3_KEY,
+    secret = process.env.S3_SECRET;
 
 function sign(req, res, next) {
  
