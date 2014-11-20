@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm">
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="AppUserDetailCtrl">
     <div class="col">
         <div style="background:url(img/c4.jpg) center center; background-size:cover">
             <div class="wrapper-lg bg-white-opacity">
@@ -9,29 +9,21 @@
                         </a>
                         <div class="clear m-b">
                             <div class="m-b m-t-sm">
-                                <span class="h3 text-black">John.Smith</span>
-                                <small class="m-l">London, UK</small>
+                                <span class="h3 text-black">{{appUser.name}}</span>
+                                <small class="m-l">{{appUser.dob}}</small>
                             </div>
-                            <p class="m-b">
-                                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i
-                                        class="fa fa-twitter"></i></a>
-                                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i
-                                        class="fa fa-facebook"></i></a>
-                                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i
-                                        class="fa fa-google-plus"></i></a>
-                            </p>
                             <a href class="btn btn-sm btn-success btn-rounded">Follow</a>
                         </div>
                     </div>
                     <div class="col-sm-5">
                         <div class="pull-right pull-none-xs text-center">
                             <a href class="m-b-md inline m">
-                                <span class="h3 block font-bold">2k</span>
-                                <small>Followers</small>
+                                <span class="h3 block font-bold">210</span>
+                                <small>Videos</small>
                             </a>
                             <a href class="m-b-md inline m">
-                                <span class="h3 block font-bold">250</span>
-                                <small>Following</small>
+                                <span class="h3 block font-bold">13,500</span>
+                                <small>Points</small>
                             </a>
                         </div>
                     </div>

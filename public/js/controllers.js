@@ -264,13 +264,17 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 //            ]
         } );
         $('#table-subscriber tbody').on( 'click', 'tr', function () {
-            //console.log($location.path())
-            //console.log(subscriberTable.row( this ).data())
-            $location.path('/app/appUser/0')
+            var data=subscriberTable.row( this ).data()
+            $location.path('/app/appUser/'+data._id)
             $scope.$apply();
         } );
   })
+    .controller('AppUserDetailCtrl',function ($scope,$rootScope,$stateParams,AppUserService) {
+        var user_id=$stateParams.appUserId;
 
+        $scope.appUser=AppUserService.get(user_id)
+        console.log($scope.appUser)
+    })
 
     .controller('VendorCtrl', function($scope, $modal, VendorService){
         $scope.vendors = VendorService.all();

@@ -8,7 +8,6 @@ app.controller('MailCtrl',  function($scope,VendorService) {
 
 
   $scope.labelClass = function(label) {
-      console.log(label)
     return {
       'b-l-danger': angular.lowercase(label) === true,
       'b-l-success': angular.lowercase(label) === false ||angular.lowercase(label) === undefined
