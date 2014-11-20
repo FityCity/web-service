@@ -42,8 +42,9 @@ var crypto = require('crypto'),
     secret = process.env.S3_SECRET;
 
 function sign(req, res, next) {
- 
-    var filename = (new Date()).toISOString(),
+  
+    var path = req.body.vendor_id + '/' + req.body.activity_id + '/' + re.body.user_id + '/';
+    var filename = path + (new Date()).toISOString(),
         expiration = new Date(new Date().getTime() + 1000 * 60 * 5).toISOString();
  
     var policy =
