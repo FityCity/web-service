@@ -31,8 +31,8 @@ app.post('/activities',function(req,res){
 })
 
 /*  UPDATE: activity  */
-app.put('/activities',function(req,res){
-  Activity.findById(req.body._id, function(err, activity) {
+app.put('/activities/:activity_id',function(req,res){
+  Activity.findById(req.params.activity_id, function(err, activity) {
     if (err){
       res.send(err);
     }

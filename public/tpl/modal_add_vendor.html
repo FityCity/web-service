@@ -5,31 +5,23 @@
     <form name="form" class="form-validation">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p class="text-muted">Please fill the information to add a Modality.</p>
+                <p class="text-muted">Please fill the information to add a vendor.</p>
                 <div class="form-group">
-                    <label>Modality name<em class="text-muted"> (allow 'a-zA-Z0-9', 4-30 length)</em></label>
-                    <input type="text" class="form-control" ng-model='newActivity.title' ng-pattern="/^[a-zA-Z0-9/\s/g]{4,30}$/" required >
+                    <label>Vendor name<em class="text-muted"> (allow 'a-zA-Z0-9_', 4-30 length)</em></label>
+                    <input type="text" class="form-control" ng-model='newVendor.name' ng-pattern="/^[a-zA-Z0-9_/\s/g]{4,30}$/" required >
                 </div>
-                <!-- <div class="form-group">
-                    <label>Modality ID</label>
-                    <input type="email" class="form-control" ng-model="user.email" required >
-                </div> -->
+
                 <div class="form-group">
-                  <label>YouTube Video ID</label>
-                  <input type="text" ng-pattern="/^[a-zA-Z0-9]{4,30}$/" class="form-control" placeholder="video id" ng-model='newActivity.youtube_id' required>
+                  <label>Vendor Logo</label>
+                  <input type="text" ng-pattern="/^[a-zA-Z0-9_-]{4,30}$/" class="form-control" placeholder="url" ng-model='newVendor.image' required>
                 </div>
                 <div class="form-group">
-                    <label>Difficulty</label>
-                    <select class="form-control m-t" ng-model="newActivity.difficulty" required >
-                        <option value="">Please choose</option>
-                        <option value="easy">Easy -- 2 points</option>
-                        <option value="medium">Medium -- 5 points</option>
-                        <option value="hard">Hard -- 10 points</option>
-                    </select>
+                    <label>Vendor Address</label>
+                    <input type="text" class="form-control" placeholder="longitude, latitue" ng-model='newVendor.address' required>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Description</label>
-                    <textarea class="form-control" ng-model='newActivity.instructions'></textarea>
+                    <label class="control-label">Offers</label>
+                    <textarea class="form-control" ng-model='newVendor.offers'></textarea>
                 </div>
 
                 
