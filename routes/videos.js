@@ -84,42 +84,22 @@ app.post('/videos',function(req,res){
   video.user_id = req.body.user_id;
   video.activity_id = req.body.activity_id;
   video.vendor_id = req.body.vendor_id;
-  video.timestamp = req.body.filename;
-
+  video.timestamp = req.body.timestamp
   var s3_bucket = 'fitecity'
   var s3_path = video.vendor_id + "/" + 
                 video.activity_id + "/" +
                 video.user_id + "/" +
-                video.timestamp + ".mp4"
+                video.timestamp
 
   video.video_url = S3_DNS + "/" + s3_bucket + '/' + s3_path;
+  //Save the video and check for errors
+  video.save(function(err) {
+    if (err){
+      res.send(err);
+    }
+    res.json({ message: 'video added!', data: video });
+  });
 
-
-
-  var content = fs.readFileSync(file.path);
-  var params = {
-    Bucket: s3_bucket, /* required */
-    Key: s3_path, /* required */
-    ACL: 'public-read',
-    ContentType: "video/mp4",
-    Body: content
-  };
-
-
-  s3.putObject(params, function (err, res) {
-      if (err) {
-        return res.send(500, err);
-      }
-
-      //Save the video and check for errors
-      video.save(function(err) {
-        if (err){
-          res.send(err);
-        }
-        res.json({ message: 'video added!', data: video });
-      });
-      
-    });
 
   
 })
