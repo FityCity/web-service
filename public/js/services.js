@@ -42,7 +42,7 @@ angular.module('app.services', [])
                 });
             },
             put:function(data){
-                var putActivity = $http.put('/activities', data);
+                var putActivity = $http.put('/activities/'+data._id, data);
                 putActivity.then(function(success){
                 }).catch(function(error){
                     console.log("Failed to save activity: ", error);

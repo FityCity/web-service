@@ -157,15 +157,14 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
         }
 
         $scope.openEditActivityModal = function (activity,size) {
-            var activity=activity
-            var EditModalActivityCtrl = function ($scope, $modalInstance,activity, ActivityService) {
-                $scope.activity=activity
+            var EditModalActivityCtrl = function ($scope, $modalInstance, ActivityService) {
+                $scope.activity=activity;
+                console.log(activity)
                 $scope.modalInstance = $modalInstance;
                 $scope.put = function(modalInstance){
                     ActivityService.put($scope.activity);
                     modalInstance.close();
                 };
-
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
 
@@ -238,6 +237,40 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
     .controller('VendorCtrl', function($scope, $modal, VendorService){
         $scope.vendors = VendorService.all();
 
+        $scope.openAddVendorModal = function (size) {
+            var ModalActivityCtrl = function ($scope, $modalInstance, VendorService) {
+                $scope.modalInstance = $modalInstance;
+                $scope.newActivity = {
+                    name:"",
+                    
+                }
+                $scope.post = function(modalInstance){
+                    ActivityService.post($scope.newActivity);
+                    modalInstance.close();
+                    $scope.newActivity = angular.copy(activityTemplate);
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            };
+            var modalInstance = $modal.open({
+                templateUrl: 'myModalContent.html',
+                controller: ModalActivityCtrl,
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        }
 
         $scope.openDeleteVendorModal=function(vendor,size){
             var ModalConfirmCtrl = function ($scope, $modalInstance, $sce,VendorService) {
