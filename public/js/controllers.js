@@ -233,6 +233,38 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             });
         }
     })
+
+
+    .controller('VendorCtrl', function($scope, $modal, VendorService){
+        $scope.vendors = VendorService.all();
+
+
+        $scope.openDeleteVendorModal=function(vendor,size){
+            var ModalConfirmCtrl = function ($scope, $modalInstance, $sce,VendorService) {
+                $scope.vendor=vendor;
+                $scope.modalInstance=$modalInstance;
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+                $scope.confirm=function(modalInstance){
+                    VendorService.delete(vendor)
+                    modalInstance.close();
+                }
+
+            };
+            var modalInstance = $modal.open({
+                templateUrl: 'deleteVendorModal.html',
+                controller: ModalConfirmCtrl,
+                size: 'sm',
+                resolve: {
+                    vendor: function () {
+                        return vendor
+                    }
+                }
+            });
+        }
+    })
+
   .controller('AppUserCtrl',function ($scope,$rootScope,$location,$filter) {
         var subscriberTable=$('#table-subscriber').DataTable( {
             ajax: $rootScope.dns+'/appUsers/datatable',
@@ -300,8 +332,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
             $('#table-videos tbody').on( 'click', 'tr', function () {
                 var data=videoTable.row( this ).data()
                 if(data.video_url){
-                    var ModalVideoCtrl = function ($scope, $modalInstance) {
-                        $scope.videoSrc=data.video_url;
+                    var ModalVideoCtrl = function ($scope, $modalInstance,$sce) {
+                        $scope.video=data
+                        $scope.url=$sce.trustAsResourceUrl(data.video_url);
                         $scope.cancel = function () {
                             $modalInstance.dismiss('cancel');
                         };
@@ -311,7 +344,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
                         controller: ModalVideoCtrl,
                         size: "lg",
                         resolve: {
-
+                            video:function(){
+                                return $scope.video
+                            }
                         }
                     });
                 }
@@ -320,9 +355,6 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
     })
 
-    .controller('VendorCtrl', function($scope, $modal, VendorService){
-        $scope.vendors = VendorService.all();
-    })
 
 
     .controller('VideoCtrl',  function($scope,VendorService) {
@@ -343,9 +375,27 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
     })
 
-    .controller('VideoListCtrl', function($scope, $stateParams,VideoService) {
+    .controller('VideoListCtrl', function($scope, $stateParams,$modal,VideoService) {
         $scope.category = $stateParams.filter;
         $scope.videos = VideoService.all();
+        $scope.openVideo=function(video){
+            var ModalVideoCtrl = function ($scope, $modalInstance,$sce) {
+                $scope.url=$sce.trustAsResourceUrl(video.video_url);
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            };
+            var modalInstance = $modal.open({
+                templateUrl: 'videoModalContent.html',
+                controller: ModalVideoCtrl,
+                size: "lg",
+                resolve: {
+                    video:function(){
+                        return video
+                    }
+                }
+            });
+        }
     })
 
 

@@ -38,7 +38,10 @@
                     <a href class="col padder-s text-muted b-r ">
                         <i class="icon ion-compose block  fa-2x"></i>
                     </a>
-                    <a href class="col padder-s text-muted  " ng-click="delete(vendor)">
+                    <script type="text/ng-template" id="deleteVendorModal.html">
+                        <div ng-include="'tpl/modal_confirm.html'"></div>
+                    </script>
+                    <a href class="col padder-s text-muted  " ng-click="openDeleteVendorModal(vendor)">
                         <i class="icon ion-trash-b block  fa-2x"></i>
                     </a>
                 </div>
