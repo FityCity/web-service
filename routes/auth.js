@@ -62,7 +62,7 @@ function sign(req, res, next) {
       awsKey: awsKey, 
       policy: policyBase64, 
       signature: signature,
-      filename: fileName
+      filename: filename
     });
  
 }
