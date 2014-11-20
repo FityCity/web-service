@@ -15,7 +15,7 @@
     </div>
   <div class="row">
       <div id="Container" class="">
-        <div ng-repeat="vendor in vendors" class="mix col-lg-3" style="display:inline-block">
+        <div ng-repeat="vendor in vendors | orderBy:'name':reverse" class="mix col-lg-3" style="display:inline-block">
             <div class="panel b-a" >
                 <div class="panel-heading no-border bg-primary">
                     <span class="text-lt">{{vendor.name}}</span>

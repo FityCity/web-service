@@ -32,6 +32,7 @@ app.post('/vendors',function(req,res){
   });
 })
 
+/* add offers*/
 app.put('/vendors/offers/:vendor_id',function(req,res){
   Vendor.findById(req.params.vendor_id, function(err, vendor) {
     if (err){
