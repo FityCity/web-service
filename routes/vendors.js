@@ -7,18 +7,18 @@ var SendPushNotification = function(){
 // var message = new gcm.Message();
 
 // or with object values
-var message = new gcm.Message({
-    collapseKey: 'demo',
-    delayWhileIdle: true,
-    timeToLive: 3,
-    data: {
-        key1: 'message1',
-        key2: 'message2'
-    }
-});
+  var message = new gcm.Message({
+      collapseKey: 'demo',
+      delayWhileIdle: true,
+      timeToLive: 3,
+      data: {
+          key1: 'message1',
+          key2: 'message2'
+      }
+  });
 
-var sender = new gcm.Sender('AIzaSyCCk573UlttBoU6mPvzwsAQ1UwejxSggD4');
-var registrationIds = [];
+  var sender = new gcm.Sender('AIzaSyCCk573UlttBoU6mPvzwsAQ1UwejxSggD4');
+  var registrationIds = [];
 
 // OPTIONAL
 // add new key-value in data object
@@ -36,17 +36,17 @@ var registrationIds = [];
 //message.addData('key2','message2');
 
 
-message.collapseKey = 'demo';
-message.delayWhileIdle = true;
-message.timeToLive = 3;
-message.dryRun = true;
-// END OPTIONAL
-var Lee_regid = 'APA91bF-aiZfkPwGJCz_pC2Scfr1DuE5UX8TqN16WFggZk7xB1Rj1_H0OYWESNvCD3XvsYp7hI4zeZWYQb-v2k83egAGhFVxBzrNFkPgcbNbkk9fzjcxpwu6bPphDLIKirO4J-cbqgkVuBlE-HHq7NIxna2aaZYfOYq5NnJj_uABIk_XwHJDvXw';
-// At least one required
-registrationIds.push(Lee_regid);
-sender.send(message, registrationIds, 4, function (err, result) {
-    console.log(result);
-});
+  message.collapseKey = 'demo';
+  message.delayWhileIdle = true;
+  message.timeToLive = 3;
+  message.dryRun = true;
+  // END OPTIONAL
+  var Lee_regid = 'APA91bF-aiZfkPwGJCz_pC2Scfr1DuE5UX8TqN16WFggZk7xB1Rj1_H0OYWESNvCD3XvsYp7hI4zeZWYQb-v2k83egAGhFVxBzrNFkPgcbNbkk9fzjcxpwu6bPphDLIKirO4J-cbqgkVuBlE-HHq7NIxna2aaZYfOYq5NnJj_uABIk_XwHJDvXw';
+  // At least one required
+  registrationIds.push(Lee_regid);
+  sender.send(message, registrationIds, 4, function (err, result) {
+      console.log(result);
+  });
 }
 
 
@@ -93,12 +93,8 @@ app.put('/vendors/offers/:vendor_id',function(req,res){
     offer.description=req.body.description;
     offer.points=req.body.points;
     vendor.offers.push(offer);
-<<<<<<< HEAD
-
-=======
-	SendPushNotification();
+	  SendPushNotification();
 	
->>>>>>> origin/develop
     // Save the beer and check for errors
     vendor.save(function(err) {
       if (err){
