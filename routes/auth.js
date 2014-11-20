@@ -44,7 +44,8 @@ var crypto = require('crypto'),
 function sign(req, res, next) {
   
     var path = req.body.vendor_id + '/' + req.body.activity_id + '/' + req.body.user_id + '/';
-    var filename = path + (new Date()).toISOString(),
+    var timestamp = (new Date()).toISOString();
+    var filename = path + timestamp,
         expiration = new Date(new Date().getTime() + 1000 * 60 * 5).toISOString();
  
     var policy =
@@ -63,7 +64,8 @@ function sign(req, res, next) {
       awsKey: awsKey, 
       policy: policyBase64, 
       signature: signature,
-      filename: filename
+      filename: filename,
+      timestamp:timestamp
     });
  
 }
