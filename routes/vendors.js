@@ -6,8 +6,8 @@ app=require('../app')
 var SendPushNotification = function(){
 
   var message = new gcm.Message();
-  message.addData('title','My Game');
-  message.addData('message','Your turn!!!!');
+  message.addData('title','Fit eCity');
+  message.addData('message','Do 10 push ups earn 50points');
   message.addData('msgcnt','1');
   message.collapseKey = 'demo';
   message.delayWhileIdle = true;
